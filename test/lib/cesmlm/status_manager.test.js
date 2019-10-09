@@ -45,10 +45,7 @@ function adapterSetStatusError (adapter, ErrorType, code) {
 describe('PrinterManager', () => {
   describe('openPrinter/closePrinter', () => {
     test('should open printer and report first status', (done) => {
-      class FakeAdapater extends PrinterAdapter {
-        static getHandle () {}
-        static freeHandle () {}
-      }
+      class FakeAdapater extends PrinterAdapter {      }
       const buffer = Buffer.alloc(2024)
       const statusBuffer = Buffer.alloc(6)
       const status = 123456
@@ -72,10 +69,7 @@ describe('PrinterManager', () => {
     })
 
     test('should not report if error on opening', (done) => {
-      class FakeAdapater extends PrinterAdapter {
-        static getHandle () {}
-        static freeHandle () {}
-      }
+      class FakeAdapater extends PrinterAdapter {}
       const openError = new Error('message')
       adapterSetOpenPrinterError(FakeAdapater, openError)
 
@@ -96,10 +90,7 @@ describe('PrinterManager', () => {
     })
 
     test('should stop reporting if error happens', (done) => {
-      class FakeAdapater extends PrinterAdapter {
-        static getHandle () {}
-        static freeHandle () {}
-      }
+      class FakeAdapater extends PrinterAdapter {}
       const buffer = Buffer.alloc(2024)
       const statusBuffer = Buffer.alloc(6)
       const status = 123456
@@ -131,10 +122,7 @@ describe('PrinterManager', () => {
     })
 
     test('should stop reporting even if stop throws', (done) => {
-      class FakeAdapater extends PrinterAdapter {
-        static getHandle () {}
-        static freeHandle () {}
-      }
+      class FakeAdapater extends PrinterAdapter {}
       const buffer = Buffer.alloc(2024)
       const statusBuffer = Buffer.alloc(6)
       const status = 123456
@@ -169,10 +157,7 @@ describe('PrinterManager', () => {
 
   describe('getLastStatus', () => {
     test('should get latest status', (done) => {
-      class FakeAdapater extends PrinterAdapter {
-        static getHandle () {}
-        static freeHandle () {}
-      }
+      class FakeAdapater extends PrinterAdapter {}
       const buffer = Buffer.alloc(2024)
       const statusBuffer = Buffer.alloc(6)
       const status = 123456
