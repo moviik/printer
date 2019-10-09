@@ -38,6 +38,7 @@
         "no-alert": "error",
         "require-call/no-relative-paths":[2, {"allowLocalSymbol": true}],
         "security/detect-object-injection": "error",
-        "handle-callback-err": "off"
+        "handle-callback-err": "off",
+        "camelcase":"off"
     }
 }
