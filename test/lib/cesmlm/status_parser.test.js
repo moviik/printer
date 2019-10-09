@@ -1,4 +1,4 @@
-const CesmlmStatusParser = require('lib/cesmlm/cesmlm_status_parser')
+const CesmlmStatusParser = require('lib/cesmlm/status_parser')
 
 describe('cesmlm_status_parser', () => {
   describe('toStringArray', () => {
