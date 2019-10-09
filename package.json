@@ -1,0 +1,43 @@
+{
+  "name": "mik-printer",
+  "version": "0.0.0",
+  "description": "Printer App",
+  "author": "Developers@Moviik <developers@moviik.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node ./index.js",
+    "lint": "eslint --no-ignore index.js lib test",
+    "test": "jest --detectOpenHandles"
+  },
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edigma/mik-printer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/edigma/mik-printer/issues"
+  },
+  "homepage": "https://github.com/edigma/mik-printer#readme",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "ffi": "^2.3.0",
+    "lodash": "^4.17.15",
+    "xmlbuilder": "^13.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-require-call": "^1.0.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "jest": "^24.9.0"
+  }
+}

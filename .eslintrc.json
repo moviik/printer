@@ -1,0 +1,43 @@
+{
+    "env": {
+        "node": true
+    },
+    "extends": [
+        "standard",
+        "plugin:security/recommended"
+    ],
+    "plugins": [
+        "security",
+        "require-call"
+    ],
+    "globals": {
+        "lo_": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "no-console": "error",
+        "no-debugger": "error",
+        "no-alert": "error",
+        "require-call/no-relative-paths":[2, {"allowLocalSymbol": true}],
+        "security/detect-object-injection": "error",
+        "handle-callback-err": "off"
+    }
+}
