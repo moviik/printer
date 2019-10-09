@@ -1,4 +1,22 @@
 require('app-module-path/cwd')
+const ipc = require('node-ipc')
+
+ipc.config.id = 'mik_printer'
+ipc.config.silent = true
+ipc.config.maxConnections = 1
+ipc.serve(() => {
+  const server = ipc.server
+  server.on('connect', (socket) => {
+
+  })
+  server.on('client.id', (object, data) => {
+    console.log('received from client')
+    console.log(object)
+  })
+})
+
+ipc.server.start()
+
 global.lo_ = require('lodash')
 
 const StatusManager = require('lib/cesmlm/status_manager')
