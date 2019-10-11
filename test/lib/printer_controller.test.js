@@ -2,10 +2,11 @@ const PrinterController = require('lib/printer_controller')
 const PrinterAdapter = require('lib/adapter/printer_adapter')
 const PrinterError = require('lib/errors/printer_error')
 
-function shouldFailIfTakesTooLong (time, done) {
-  return setTimeout(() => {
+function shouldFailIfTakesTooLong (time, done, id) {
+  return setTimeout((id) => {
+    console.log(id)
     done.fail()
-  }, time)
+  }, time, id)
 }
 
 function shouldFailIfReceivesPrinterOpenError (controller, done) {
@@ -279,6 +280,55 @@ describe('PrinterController', () => {
         })
         controller.closePrinter()
       })
+      controller.openPrinter()
+    })
+
+    it('should open and get printer disconnected error', (done) => {
+      const statusBuffer = Buffer.alloc(6)
+      const newStatus = 16
+      statusBuffer.writeUInt32BE(newStatus)
+      const error_code = 'hey'
+      class FakeAdapter extends PrinterAdapter {
+        static openPrinter () {}
+        static closePrinter () {}
+        static printerStatus (printerStatus) { printerStatus.writeUInt32BE(newStatus) }
+        static getStatusErrors () { return { toString: () => { return error_code } } }
+        static getPrintErrors () {}
+        static getHandle () {}
+        static freeHandle () {}
+      }
+
+      const controller = new PrinterController(FakeAdapter, 100, 100)
+      controller.once('printer.opened', () => {
+        controller.once('printer.status', (status) => {
+          expect(status).toEqual(statusBuffer)
+          FakeAdapter.printerStatus = () => { throw new PrinterError('message', 1) }
+
+          controller.once('printer.disconnected', (error) => {
+            expect(error).toStrictEqual({ error_code })
+            // it must not receive printer.closed event, although it was closed by the controller
+            controller.on('printer.close_error', () => {
+              done.fail()
+            })
+            // after status error, controller closes the connection, so a new status callback can be immediately set
+            const secondStatus = 13
+            statusBuffer.writeUInt32BE(secondStatus)
+            FakeAdapter.printerStatus = (printerStatus) => { printerStatus.writeUInt32BE(secondStatus) }
+            let timer = shouldFailIfTakesTooLong(200, done, 'timer1')
+            controller.on('printer.opened', () => {
+              clearTimeout(timer)
+              timer = shouldFailIfTakesTooLong(200, done, 'timer2')
+              controller.on('printer.status', (status) => {
+                clearTimeout(timer)
+                expect(status).toEqual(statusBuffer)
+                controller.closePrinter()
+                done()
+              })
+            })
+          })
+        })
+      })
+
       controller.openPrinter()
     })
   })
