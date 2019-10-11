@@ -31,13 +31,14 @@ describe('PrinterController', () => {
       }
 
       const controller = new PrinterController(FakeAdapter, 100, 100)
-      controller.openPrinter()
-
-      controller.on('printer.status', (status) => {
-        expect(status).toEqual(statusBuffer)
-        controller.closePrinter()
-        done()
+      controller.on('printer.opened', () => {
+        controller.on('printer.status', (status) => {
+          expect(status).toEqual(statusBuffer)
+          controller.closePrinter()
+          done()
+        })
       })
+      controller.openPrinter()
     })
 
     it('should fail to open because of status and retry until opened', (done) => {
@@ -69,12 +70,14 @@ describe('PrinterController', () => {
           timer = shouldFailIfTakesTooLong(300, done)
           FakeAdapter.openPrinter = () => {}
           shouldFailIfReceivesPrinterOpenError(controller, done)
-          controller.on('printer.status', (status) => {
-            // timer cleared, because status was received
-            clearTimeout(timer)
-            expect(status).toEqual(statusBuffer)
-            controller.closePrinter()
-            done()
+          controller.on('printer.opened', () => {
+            controller.on('printer.status', (status) => {
+              // timer cleared, because status was received
+              clearTimeout(timer)
+              expect(status).toEqual(statusBuffer)
+              controller.closePrinter()
+              done()
+            })
           })
         })
       })
@@ -117,10 +120,10 @@ describe('PrinterController', () => {
               FakeAdapter.getHandle = () => {}
               // should fail it receives open error again, because xml handle is fine
               shouldFailIfReceivesPrinterOpenError(controller, done)
-              setTimeout(() => {
+              controller.on('printer.opened', () => {
                 controller.closePrinter()
                 done()
-              }, 300)
+              })
             })
           })
         })
