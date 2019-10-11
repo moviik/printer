@@ -14,6 +14,12 @@ function shouldFailIfReceivesPrinterOpenError (controller, done) {
   })
 }
 
+function shouldFailIfReceivesPrinterStatus (controller, done) {
+  controller.on('printer.status', () => {
+    done.fail()
+  })
+}
+
 describe('PrinterController', () => {
   describe('open/close', () => {
     it('should open and report status', (done) => {
@@ -36,6 +42,38 @@ describe('PrinterController', () => {
           expect(status).toEqual(statusBuffer)
           controller.closePrinter()
           done()
+        })
+      })
+      controller.openPrinter()
+    })
+
+    it('should open twice and nothing happens', (done) => {
+      const statusBuffer = Buffer.alloc(6)
+      const newStatus = 16
+      statusBuffer.writeUInt32BE(newStatus)
+      class FakeAdapter extends PrinterAdapter {
+        static openPrinter () {}
+        static closePrinter () {}
+        static printerStatus (printerStatus) { printerStatus.writeUInt32BE(newStatus) }
+        static getStatusErrors () {}
+        static getPrintErrors () {}
+        static getHandle () {}
+        static freeHandle () {}
+      }
+
+      const controller = new PrinterController(FakeAdapter, 100, 100)
+      controller.on('printer.opened', () => {
+        controller.on('printer.status', (status) => {
+          expect(status).toEqual(statusBuffer)
+          controller.openPrinter()
+          const secondStatus = 13
+          statusBuffer.writeUInt32BE(secondStatus)
+          FakeAdapter.printerStatus = (printerStatus) => { printerStatus.writeUInt32BE(secondStatus) }
+          controller.on('printer.status', (status) => {
+            expect(status).toEqual(statusBuffer)
+            controller.closePrinter()
+            done()
+          })
         })
       })
       controller.openPrinter()
@@ -165,6 +203,58 @@ describe('PrinterController', () => {
           })
         })
       })
+    })
+
+    it('should fail to close status', (done) => {
+      const error_code = 'hey'
+      class FakeAdapter extends PrinterAdapter {
+        static openPrinter () {}
+        static closePrinter () { throw new PrinterError('message', 1) }
+        static printerStatus () { }
+        static getStatusErrors () { return { toString: () => { return error_code } } }
+        static getPrintErrors () {}
+        static getHandle () {}
+        static freeHandle () {}
+      }
+
+      const controller = new PrinterController(FakeAdapter, 100, 100)
+      controller.on('printer.opened', () => {
+        controller.on('printer.close_error', (error) => {
+          expect(error).toStrictEqual({ error_code })
+          shouldFailIfReceivesPrinterStatus(controller, done)
+          setTimeout(() => {
+            done()
+          }, 200)
+        })
+        controller.closePrinter()
+      })
+      controller.openPrinter()
+    })
+
+    it('should fail to close xml', (done) => {
+      const error_code = 'hey'
+      class FakeAdapter extends PrinterAdapter {
+        static openPrinter () {}
+        static closePrinter () { }
+        static printerStatus () { }
+        static getStatusErrors () { }
+        static getPrintErrors () { return { toString: () => { return error_code } } }
+        static getHandle () {}
+        static freeHandle () { throw new PrinterError('message', 1) }
+      }
+
+      const controller = new PrinterController(FakeAdapter, 100, 100)
+      controller.on('printer.opened', () => {
+        controller.on('printer.close_error', (error) => {
+          expect(error).toStrictEqual({ error_code })
+          shouldFailIfReceivesPrinterStatus(controller, done)
+          setTimeout(() => {
+            done()
+          }, 200)
+        })
+        controller.closePrinter()
+      })
+      controller.openPrinter()
     })
   })
 })
