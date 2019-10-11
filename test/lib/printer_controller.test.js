@@ -63,7 +63,7 @@ describe('PrinterController', () => {
 
       const controller = new PrinterController(FakeAdapter, 100, 100)
       controller.on('printer.opened', () => {
-        controller.on('printer.status', (status) => {
+        controller.once('printer.status', (status) => {
           expect(status).toEqual(statusBuffer)
           controller.openPrinter()
           const secondStatus = 13
@@ -139,7 +139,7 @@ describe('PrinterController', () => {
       const controller = new PrinterController(FakeAdapter, 100, 100)
       controller.openPrinter()
       // should receive status anyway, although printing is not possible
-      controller.on('printer.status', (status) => {
+      controller.once('printer.status', (status) => {
         expect(status).toEqual(statusBuffer)
         // should receive open error, could not be the first, does not matter
         controller.once('printer.open_error', (error) => {
