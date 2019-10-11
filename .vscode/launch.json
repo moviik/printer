@@ -13,7 +13,7 @@
     },
     {
       "type": "node",
-      "name": "Tests",
+      "name": "Mik-printer Tests",
       "request": "launch",
       "args": [
         "--runInBand"

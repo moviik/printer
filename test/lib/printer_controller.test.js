@@ -106,7 +106,7 @@ describe('PrinterController', () => {
         // should receive open error, could not be the first, does not matter
         controller.once('printer.open_error', (error) => {
           expect(error).toStrictEqual({ error_code })
-          const timer = shouldFailIfTakesTooLong(200, done, 'timer1')
+          const timer = shouldFailIfTakesTooLong(200, done)
           // should receive open error again
           controller.once('printer.open_error', (error) => {
             expect(error).toStrictEqual({ error_code })
@@ -124,6 +124,43 @@ describe('PrinterController', () => {
                 controller.closePrinter()
                 done()
               })
+            })
+          })
+        })
+      })
+    })
+
+    it('should fail to open because both xml and status failed', (done) => {
+      const error_code = 'hey'
+      class FakeAdapter extends PrinterAdapter {
+        static openPrinter () { throw new PrinterError('message', 1) }
+        static closePrinter () { }
+        static printerStatus () { }
+        static getStatusErrors () { return { toString: () => { return error_code } } }
+        static getPrintErrors () { return { toString: () => { return error_code } } }
+        static getHandle () { throw new PrinterError('message', 1) }
+        static freeHandle () { }
+      }
+
+      const controller = new PrinterController(FakeAdapter, 100, 100)
+      controller.openPrinter()
+      controller.once('printer.open_error', (error) => {
+        expect(error).toStrictEqual({ error_code })
+        let timer = shouldFailIfTakesTooLong(200, done)
+        controller.once('printer.open_error', (error) => {
+          clearTimeout(timer)
+          timer = shouldFailIfTakesTooLong(200, done)
+          expect(error).toStrictEqual({ error_code })
+          FakeAdapter.openPrinter = () => {}
+          controller.once('printer.open_error', (error) => {
+            clearTimeout(timer)
+            timer = shouldFailIfTakesTooLong(200, done)
+            expect(error).toStrictEqual({ error_code })
+            FakeAdapter.getHandle = () => {}
+            controller.on('printer.opened', () => {
+              clearTimeout(timer)
+              controller.closePrinter()
+              done()
             })
           })
         })
