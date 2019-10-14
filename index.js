@@ -4,12 +4,13 @@ global.lo_ = require('lodash')
 
 const ipc = require('node-ipc')
 
-const StatusManager = require('lib/cesmlm/status_manager')
-const XmlManager = require('lib/cpt/xml_manager')
 const Modus3Adapter = require('lib/adapter/modus3_adapter')
+const PrinterController = require('lib/printer_controller')
 
 const statusErrors = Modus3Adapter.getStatusErrors()
 const printErrors = Modus3Adapter.getPrintErrors()
+
+const printerController = new PrinterController(Modus3Adapter, 1000, 1000)
 
 function configIpcServer () {
   return new Promise((resolve, reject) => {
@@ -30,8 +31,8 @@ function configIpcServer () {
         try {
           console.log('printer.print')
           console.log(payload)
-          server.xmlManager.setXmlTagValue('TextBox0.text', payload.label + '\0')
-          server.xmlManager.printXml()
+          printerController.setXmlTagValue('TextBox0.text', payload.label + '\0')
+          printerController.printXml()
           server.broadcast('printer.print_reply', { success: true })
         } catch (error) {
           server.broadcast('printer.print_reply', { success: false, error_code: printErrors.toString(error.code) })
@@ -43,17 +44,12 @@ function configIpcServer () {
 }
 
 configIpcServer().then((server) => {
-  const statusManager = new StatusManager(Modus3Adapter)
   const statusParser = Modus3Adapter.getStatusParser()
-
-  const xmlManager = new XmlManager(Modus3Adapter)
-  server.xmlManager = xmlManager
 
   function openPrinter () {
     try {
-      statusManager.openPrinter()
-      xmlManager.openPrinter()
-      xmlManager.setXmlFile('lib/ticket_template/Moviik.xml')
+      printerController.openPrinter()
+      printerController.setXmlFile('lib/ticket_template/Moviik.xml')
     } catch (error) {
       server.broadcast('printer.open_error', error.code)
     }
@@ -61,13 +57,28 @@ configIpcServer().then((server) => {
 
   openPrinter()
 
-  statusManager.on('statusChanged', async (rawStatus) => {
+  printerController.on('printer.opened', () => {
+    server.broadcast('printer.opened')
+  })
+
+  printerController.on('printer.closed', () => {
+    server.broadcast('printer.closed')
+  })
+
+  printerController.on('printer.close_error', () => {
+    server.broadcast('printer.close_error')
+  })
+
+  printerController.on('printer.open_error', () => {
+    server.broadcast('printer.open_error')
+  })
+
+  printerController.on('printer.status', async (rawStatus) => {
     const status = statusParser.toStringArray(statusParser.parse(rawStatus))
     server.broadcast('printer.status', { status })
   })
 
-  statusManager.on('printerDisconnected', (error) => {
-    const error_code = statusErrors.toString(error.code)
-    server.broadcast('printer.disconnected', { error_code })
+  printerController.on('printer.disconnected', (error) => {
+    server.broadcast('printer.disconnected', error)
   })
 })
