@@ -1,0 +1,20 @@
+[Unit]
+Description=Moviik's dispenser software
+ConditionFileIsExecutable=/home/pi/node-v10.11.0-linux-armv7l/bin/node
+ConditionFileIsExecutable=/home/pi/node-v10.11.0-linux-armv7l/bin/npm
+Requires=network-online.target mik_printer.service
+After=network-online.target mik_printer.service
+
+[Service]
+User=pi
+Group=pi
+Type=simple
+WorkingDirectory=/home/pi/mik-dispenser
+Environment="DISPLAY=:0"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/home/pi/node-v10.11.0-linux-armv7l/bin"
+ExecStart=/home/pi/node-v10.11.0-linux-armv7l/bin/npm start
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
