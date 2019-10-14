@@ -3,47 +3,15 @@ require('app-module-path/cwd')
 global.lo_ = require('lodash')
 
 const ipc = require('node-ipc')
+const EventEmitter = require('events')
 
 const Modus3Adapter = require('lib/adapter/modus3_adapter')
 const PrinterController = require('lib/printer_controller')
-
-const statusErrors = Modus3Adapter.getStatusErrors()
 const printErrors = Modus3Adapter.getPrintErrors()
 
 const printerController = new PrinterController(Modus3Adapter, 1000, 1000)
 
-function configIpcServer () {
-  return new Promise((resolve, reject) => {
-    ipc.config.id = 'mik_printer'
-    ipc.config.silent = true
-    ipc.config.maxConnections = 1
-    ipc.serve(() => {
-      const server = ipc.server
-      server.on('connect', (socket) => {
-
-      })
-      server.on('client.id', (payload, socket) => {
-        console.log('client.id')
-        console.log(payload)
-        resolve(server)
-      })
-      server.on('printer.print', (payload, socket) => {
-        try {
-          console.log('printer.print')
-          console.log(payload)
-          printerController.setXmlTagValue('TextBox0.text', payload.label + '\0')
-          printerController.printXml()
-          server.broadcast('printer.print_reply', { success: true })
-        } catch (error) {
-          server.broadcast('printer.print_reply', { success: false, error_code: printErrors.toString(error.code) })
-        }
-      })
-    })
-    ipc.server.start()
-  })
-}
-
-configIpcServer().then((server) => {
+function registerEvents (server) {
   const statusParser = Modus3Adapter.getStatusParser()
   printerController.on('printer.opened', () => {
     server.broadcast('printer.opened')
@@ -69,7 +37,45 @@ configIpcServer().then((server) => {
   printerController.on('printer.disconnected', (error) => {
     server.broadcast('printer.disconnected', error)
   })
+}
 
+function configIpcServer () {
+  const emitter = new EventEmitter()
+  ipc.config.id = 'mik_printer'
+  ipc.config.silent = true
+  ipc.config.maxConnections = 1
+  ipc.serve(() => {
+    const server = ipc.server
+    registerEvents(server)
+    server.on('connect', (socket) => {
+
+    })
+    server.on('client.id', (payload, socket) => {
+      emitter.emit('start')
+    })
+    server.on('socket.disconnected', (socket, destroyedSocketId) => {
+      emitter.emit('stop')
+    })
+    server.on('printer.print', (payload, socket) => {
+      try {
+        printerController.setXmlTagValue('TextBox0.text', payload.label + '\0')
+        printerController.printXml()
+        server.broadcast('printer.print_reply', { success: true })
+      } catch (error) {
+        server.broadcast('printer.print_reply', { success: false, error_code: printErrors.toString(error.code) })
+      }
+    })
+  })
+  ipc.server.start()
+  return emitter
+}
+
+const emitter = configIpcServer()
+emitter.on('stop', () => {
+  printerController.closePrinter()
+})
+
+emitter.on('start', () => {
   printerController.openPrinter()
   printerController.setXmlFile('lib/ticket_template/Moviik.xml')
 })
