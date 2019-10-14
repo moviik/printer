@@ -45,18 +45,6 @@ function configIpcServer () {
 
 configIpcServer().then((server) => {
   const statusParser = Modus3Adapter.getStatusParser()
-
-  function openPrinter () {
-    try {
-      printerController.openPrinter()
-      printerController.setXmlFile('lib/ticket_template/Moviik.xml')
-    } catch (error) {
-      server.broadcast('printer.open_error', error.code)
-    }
-  }
-
-  openPrinter()
-
   printerController.on('printer.opened', () => {
     server.broadcast('printer.opened')
   })
@@ -65,12 +53,12 @@ configIpcServer().then((server) => {
     server.broadcast('printer.closed')
   })
 
-  printerController.on('printer.close_error', () => {
-    server.broadcast('printer.close_error')
+  printerController.on('printer.close_error', (error) => {
+    server.broadcast('printer.close_error', error)
   })
 
-  printerController.on('printer.open_error', () => {
-    server.broadcast('printer.open_error')
+  printerController.on('printer.open_error', (error) => {
+    server.broadcast('printer.open_error', error)
   })
 
   printerController.on('printer.status', async (rawStatus) => {
@@ -81,4 +69,7 @@ configIpcServer().then((server) => {
   printerController.on('printer.disconnected', (error) => {
     server.broadcast('printer.disconnected', error)
   })
+
+  printerController.openPrinter()
+  printerController.setXmlFile('lib/ticket_template/Moviik.xml')
 })
