@@ -7,8 +7,8 @@ if [ "$(id -u)" != 0 ]
   exit
 fi
 
-cp ./ mik_printer.service /etc/systemd/system
-cp ./ mik_dispenser.service /etc/systemd/system
+cp ./mik_printer.service /etc/systemd/system
+cp ./mik_dispenser.service /etc/systemd/system
 
 systemctl enable mik_printer
 systemctl enable mik_dispenser
