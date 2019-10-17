@@ -32,4 +32,9 @@ System requirements
 1. cd ~/mik-dispenser
 1. git checkout n2019-10-09-ipc
 1. npm run electron_install
-1. sudo reboot
+1. cd ~
+1. Somehow clone root-ro
+1. cd root-ro/utils
+1. sudo mount_utils.sh
+1. cd ..
+1. sudo ./install.sh
