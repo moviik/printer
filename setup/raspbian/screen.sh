@@ -7,4 +7,4 @@ if [ "$(id -u)" != 0 ]
   exit
 fi
 
-sed -i "/#xserver-command=X/c\xserver-command=X -s 0 dpms" /etc/lightdm/lightdm.conf
+sed -i "/#xserver-command=X/c\xserver-command=X -s 0 dpms -nocursor" /etc/lightdm/lightdm.conf
