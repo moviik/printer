@@ -1,15 +1,15 @@
 [Unit]
 Description=Moviik's printer software
-ConditionFileIsExecutable=/home/pi/node-v10.11.0-linux-armv7l/bin/node
-ConditionFileIsExecutable=/home/pi/node-v10.11.0-linux-armv7l/bin/npm
+ConditionFileIsExecutable=/usr/local/bin/node-v10.11.0-linux-armv7l/bin/node
+ConditionFileIsExecutable=/usr/local/bin/node-v10.11.0-linux-armv7l/bin/npm
 
 [Service]
 User=pi
 Group=pi
 Type=simple
-WorkingDirectory=/home/pi/mik-printer
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/home/pi/node-v10.11.0-linux-armv7l/bin"
-ExecStart=/home/pi/node-v10.11.0-linux-armv7l/bin/npm start
+WorkingDirectory=/usr/local/bin/mik-printer
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/usr/local/bin/node-v10.11.0-linux-armv7l/bin"
+ExecStart=/usr/local/bin/node-v10.11.0-linux-armv7l/bin/npm start
 Restart=always
 RestartSec=5s
 

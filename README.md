@@ -62,23 +62,29 @@ System requirements
 1. Reboot
 1. cd ~
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
-1. cd mik-printer/setup/raspbian
-1. sudo ./deps.sh
-1. Fetch yourself another coffee
-1. ./electron.sh
-1. sudo ./systemd.sh
-1. sudo ./screen.sh
+    1. cd mik-printer/setup/raspbian
+    1. sudo ./deps.sh
+    1. Fetch yourself another coffee
+    1. ./electron.sh
+    1. export PATH=${PATH}:/home/pi/node-v10.11.0-linux-armv7l/bin
+    1. sudo ./screen.sh
+    1. cd ~/mik-printer
+    1. npm i
 1. cd ~
 1. Somehow, clone mik-dispenser
-1. export PATH=${PATH}:/home/pi/node-v10.11.0-linux-armv7l/bin
-1. cd mik-printer
-1. npm i
-1. cd ~/mik-dispenser
-1. git checkout n2019-10-09-ipc
-1. npm run electron_install
+    1. cd mik-dispenser
+    1. git checkout n2019-10-09-ipc
+    1. npm run electron_install
 1. cd ~
+1. cd mik-printer
+    1. cd setup/raspbian
+    1. sudo ./systemd.sh
+1. cd ~
+    1. rm -rf mik-printer
+    1. rm -rf mik-dispenser
+    1. rm -rf node-v10.11.0-linux-armv7l
 1. Somehow clone root-ro
-1. cd root-ro/utils
-1. sudo mount_utils.sh
-1. cd ..
-1. sudo ./install.sh
+    1. cd root-ro/utils
+    1. sudo mount_utils.sh
+    1. cd ..
+    1. sudo ./install.sh
