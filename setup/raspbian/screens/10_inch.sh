@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # screen rotation counterclock
 # must be a shell script because of escaping
 # see https://wiki.lxde.org/en/LXSession
