@@ -62,6 +62,7 @@ System requirements
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
     1. cd mik-printer/setup/raspbian
     1. sudo ./deps.sh
+    1. sudo ./crontab.sh
     1. ./electron.sh
     1. export PATH=${PATH}:/home/pi/node-v10.11.0-linux-armv7l/bin
     1. sudo ./screen.sh
