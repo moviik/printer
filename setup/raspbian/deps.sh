@@ -22,6 +22,7 @@ apt-get install -y cups
 
 # so the current user has access to printer service
 usermod -a -G lp $DEFAULT_USER
+usermod -a -G lpadmin $DEFAULT_USER
 
 # modus 3 libraries dependencies
 apt-get install libgl-dev libqt4-dev libusb-dev libpng12-dev -y
