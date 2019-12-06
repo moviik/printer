@@ -20,76 +20,46 @@
       </RowDefinition>
     </RowDefinitions>
     <!--   -->
-    <ColumnDefinitions class="ColumnDefinitions" id="columns">
-      <ColumnDefinition id="column0">
-        <width>50*</width>
-      </ColumnDefinition>
-      <ColumnDefinition id="column1">
-        <width>50*</width>
-      </ColumnDefinition>
-    </ColumnDefinitions>
-    <!--   -->
     <CustomItem class="text" id="Moviik">
       <hidden>0</hidden>
       <row>0</row>
-      <column>0</column>
       <rowspan>0</rowspan>
-      <columnspan>2</columnspan>
       <width>160</width>
       <height>80</height>
       <hanchor>center</hanchor>
       <vanchor>top</vanchor>
       <margin>0,15,0,0</margin>
-      <rotation>0</rotation>
       <text>Moviik</text>
       <fontname>Ubuntu</fontname>
       <fontsize>18</fontsize>
-      <bold>0</bold>
-      <italic>0</italic>
-      <antialias>0</antialias>
-      <flags>0x00001021</flags>
     </CustomItem>
     <!--   -->
     <CustomItem class="text" id="TextBox0">
       <hidden>0</hidden>
       <row>0</row>
-      <column>0</column>
       <rowspan>1</rowspan>
-      <columnspan>2</columnspan>
       <width>206</width>
       <height>47</height>
       <hanchor>center</hanchor>
       <vanchor>top</vanchor>
       <margin>0,166,0,0</margin>
-      <rotation>0</rotation>
       <text>A sua senha:</text>
       <fontname>Ubuntu</fontname>
       <fontsize>12</fontsize>
-      <bold>0</bold>
-      <italic>0</italic>
-      <antialias>0</antialias>
-      <flags>0x00001021</flags>
     </CustomItem>
     <!--   -->
     <CustomItem class="text" id="Label">
       <hidden>0</hidden>
       <row>1</row>
-      <column>0</column>
       <rowspan>1</rowspan>
-      <columnspan>2</columnspan>
       <width>160</width>
       <height>80</height>
       <hanchor>center</hanchor>
       <vanchor>top</vanchor>
       <margin>0,44,0,0</margin>
-      <rotation>0</rotation>
       <text variable="true">Label</text>
       <fontname>Ubuntu</fontname>
       <fontsize>24</fontsize>
-      <bold>0</bold>
-      <italic>0</italic>
-      <antialias>0</antialias>
-      <flags>0x00001021</flags>
     </CustomItem>
     <!--   -->
   </CustomItems>
