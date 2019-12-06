@@ -36,4 +36,8 @@ systemctl restart cups
 tar -xvf "$MODUS_FILE"
 ./Modus3_CUPSDrv-200-PKG/Modus3_CUPSDrv-200.sh
 gunzip -d /usr/share/cups/model/Custom/Modus3.ppd.gz
-/usr/sbin/lpadmin -p CUSTOM_SPA_MODUS3 -E -v usb://CUSTOM%20SPA/MODUS3?serial=MODUS3%20USB%20Num.:%200 -m Custom/Modus3.ppd
+## printer with firmware (FCODE) 1.00
+# /usr/sbin/lpadmin -p CUSTOM_SPA_MODUS3 -E -v usb://CUSTOM%20SPA/MODUS3?serial=MODUS3%20USB%20Num.:%200 -m Custom/Modus3.ppd
+
+## printer with firmware (FCODE) 1.01
+/usr/sbin/lpadmin -p CUSTOM_SPA_MODUS3 -E -v usb://CUSTOM%20SPA/MODUS3?serial=MODUS3_USB_Num.:_0 -m Custom/Modus3.ppd
