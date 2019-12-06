@@ -2,8 +2,8 @@
 Description=Moviik's dispenser software
 ConditionFileIsExecutable=/usr/local/bin/node-v10.11.0-linux-armv7l/bin/node
 ConditionFileIsExecutable=/usr/local/bin/node-v10.11.0-linux-armv7l/bin/npm
-Requires=network-online.target mik_printer.service
-After=network-online.target mik_printer.service
+Requires=network-online.target mik-printer.service
+After=network-online.target mik-printer.service
 
 [Service]
 User=pi
