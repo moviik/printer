@@ -23,7 +23,7 @@ async function print (args, options) {
   const printerController = new PrinterController(Modus3Adapter, 1000, 1000)
   printerController.openPrinter()
   printerController.setXmlFile('lib/ticket_template/Moviik.xml')
-  printerController.setXmlTagValue('TextBox0.text', options.label + '\0')
+  printerController.setXmlTagValue('Label.text', options.label + '\0')
   printerController.printXml()
   printerController.closePrinter()
 }
