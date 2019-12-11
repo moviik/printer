@@ -4,7 +4,6 @@ const PrinterError = require('lib/errors/printer_error')
 
 function shouldFailIfTakesTooLong (time, done, id) {
   return setTimeout((id) => {
-    console.log(id)
     done.fail()
   }, time, id)
 }

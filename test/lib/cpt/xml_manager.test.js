@@ -1,6 +1,5 @@
 const XmlManager = require('lib/cpt/xml_manager')
 const PrinterAdapter = require('lib/adapter/printer_adapter')
-const PrinterError = require('lib/errors/printer_error')
 
 function adapterSetGetHandle (adapter) {
   adapter.getHandle = () => {

@@ -45,7 +45,7 @@ function adapterSetStatusError (adapter, ErrorType, code) {
 describe('PrinterManager', () => {
   describe('openPrinter/closePrinter', () => {
     test('should open printer and report first status', (done) => {
-      class FakeAdapater extends PrinterAdapter {      }
+      class FakeAdapater extends PrinterAdapter { }
       const buffer = Buffer.alloc(2024)
       const statusBuffer = Buffer.alloc(6)
       const status = 123456

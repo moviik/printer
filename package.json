@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "node ./index.js",
-    "lint": "eslint --no-ignore index.js lib test",
+    "lint": "eslint --no-ignore index.js lib test bin",
     "test": "jest --detectOpenHandles"
   },
   "main": "index.js",
