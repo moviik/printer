@@ -58,7 +58,7 @@ function configIpcServer () {
     })
     server.on('printer.print', (payload, socket) => {
       try {
-        printerController.setXmlTagValue('label.text', payload.label + '\0')
+        printerController.setXmlTagValue('label.text', payload.label)
         printerController.printXml()
         server.broadcast('printer.print_reply', { success: true })
       } catch (error) {
