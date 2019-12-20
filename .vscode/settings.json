@@ -1,0 +1,8 @@
+{
+  "python.pythonPath": "py_dev_env/bin/python",
+  "python.venvPath": "py_dev_env",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "autopep8",
+  "python.formatting.autopep8Args": ["--indent-size=2", "--max-line-length", "100"]
+}

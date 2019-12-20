@@ -5,7 +5,18 @@ The layout of the ticket is defined in lib/printer/ticket-template.
 # Contribute
 System requirements
  - node (version 10.11.0) - because node-ffi dependency does not work with node10+
- - see setup deps for your environment
+ - python3
+ - see setup folder for your environment
+
+## Python environment set
+- Use python 3.7.3
+- Create a virtualenv
+  - You must have virtualenv installed in your base python
+  - name it `py_dev_env` because it is already .gitignored
+- Activate with `. ./py_dev_env/bin/activate`
+- `pip install -r py_dev_reqs.txt` to install dependencies
+- `pip freeze > py_dev_reqs.txt` to snapshot dev dependencies
+- `pip freeze > py_prod_reqs.txt` to snapshot prod dependencies
 
 # RPi 4 lite image build
 1. Get most recent lite raspbian version (tested with 2019-09-26-raspbian-buster-lite.img)
