@@ -1,10 +1,9 @@
 'Script to install cups printer modus3 dependencies'
 
 from os import system, getlogin
-from shutil import unpack_archive
 from gzip import open as gzip_open
 
-from utils import print_env, assert_sudo, assert_file
+from utils import print_env, assert_sudo, assert_file, extract_file
 
 
 def _cups_quirks():
@@ -16,9 +15,9 @@ def _cups_quirks():
 
 def _cups_driver():
     modus_driver = 'Modus3_CUPSDrv-200-PKG'
-    modus_file = f'../{modus_driver}.tgz'
+    modus_file = f'{modus_driver}.tgz'
     assert_file(modus_file)
-    unpack_archive(modus_file)
+    extract_file(modus_file)
     system(f'{modus_driver}/Modus3_CUPSDrv-200.sh')
 
     ppd_file_name = 'Modus3.ppd'

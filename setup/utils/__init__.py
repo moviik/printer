@@ -2,6 +2,7 @@
 
 from os import geteuid, getlogin, path
 from sys import executable, version
+from shutil import unpack_archive
 
 
 def print_env():
@@ -17,3 +18,7 @@ def assert_sudo():
 
 def assert_file(file):
     assert path.isfile(file), f'{file} does not exist'
+
+
+def extract_file(file, target=None):
+    unpack_archive(file, target)
