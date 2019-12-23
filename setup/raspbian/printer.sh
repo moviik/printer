@@ -41,3 +41,6 @@ gunzip -d /usr/share/cups/model/Custom/Modus3.ppd.gz
 
 ## printer with firmware (FCODE) 1.01
 /usr/sbin/lpadmin -p CUSTOM_SPA_MODUS3 -E -v usb://CUSTOM%20SPA/MODUS3?serial=MODUS3_USB_Num.:_0 -m Custom/Modus3.ppd
+
+## update page size
+lpadmin -p CUSTOM_SPA_MODUS3 -o PageSize=X80MMY58MM
