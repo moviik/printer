@@ -1,36 +1,20 @@
-#!/usr/bin/env python3
 'Script to install cups printer modus3 dependencies'
 
-from os import system, getuid, path
-from sys import executable, version
-from getpass import getuser
+from os import system, getlogin
 from shutil import unpack_archive
 from gzip import open as gzip_open
 
-
-def print_env():
-  print('Python version', version)
-  print('Python executable', executable)
-  print('userid', getuid())
-  print('username', getuser())
+from utils import print_env, assert_sudo, assert_file
 
 
-def assert_sudo():
-  assert getuid() == 0, 'Please run as sudo'
-
-
-def cups_quirks():
+def _cups_quirks():
   # https://github.com/apple/cups/issues/5664#issuecomment-540617663
   cups_quirk_file = open('/usr/share/cups/usb/faster-print.usb-quirks', 'a+')
   cups_quirk_file.writelines(['0x0dd4 0x023b no-reattach unidir'])
   cups_quirk_file.close()
 
 
-def assert_file(file):
-  assert path.isfile(file), f'{file} does not exist'
-
-
-def cups_driver():
+def _cups_driver():
   modus_driver = 'Modus3_CUPSDrv-200-PKG'
   modus_file = f'../{modus_driver}.tgz'
   assert_file(modus_file)
@@ -54,22 +38,23 @@ def cups_driver():
   system(f'lpadmin -p {printer_name} -o PageSize=X80MMY58MM')
 
 
-print_env()
+def printer():
+  print_env()
+  assert_sudo()
 
-assert_sudo()
-username = getuser()
+  username = getlogin()
 
-system('apt-get update')
+  system('apt-get update')
 
-# cups service
-system('apt-get install -y cups')
+  # cups service
+  system('apt-get install -y cups')
 
-# modus 3 libraries dependencies
-system('apt-get install libgl-dev libqt4-dev libusb-dev libpng12-dev -y')
+  # modus 3 libraries dependencies
+  system('apt-get install libgl-dev libqt4-dev libusb-dev libpng12-dev -y')
 
-# so the current user has access to printer service
-system(f'usermod -a -G lp {username}')
-system(f'usermod -a -G lpadmin {username}')
+  # so the current user has access to printer service
+  system(f'usermod -a -G lp {username}')
+  system(f'usermod -a -G lpadmin {username}')
 
-cups_quirks()
-cups_driver()
+  _cups_quirks()
+  _cups_driver()
