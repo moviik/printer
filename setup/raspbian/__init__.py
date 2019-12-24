@@ -3,7 +3,9 @@
 from .printer import printer
 from .electron import electron
 from .crontab import crontab
+from .systemd import systemd
 
-printer()
-electron()
-crontab()
+# printer()
+# electron()
+# crontab()
+systemd()
