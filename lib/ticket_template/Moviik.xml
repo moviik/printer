@@ -13,22 +13,22 @@
     <!--   -->
     <RowDefinitions class="RowDefinitions" id="rows">
       <RowDefinition id="row0">
-        <height>70</height>
+        <height>10*</height>
       </RowDefinition>
       <RowDefinition id="row1">
         <height>10*</height>
       </RowDefinition>
       <RowDefinition id="row2">
-        <height>10*</height>
+        <height>30*</height>
       </RowDefinition>
       <RowDefinition id="row3">
-        <height>30*</height>
+        <height>10*</height>
       </RowDefinition>
       <RowDefinition id="row4">
         <height>10*</height>
       </RowDefinition>
       <RowDefinition id="row5">
-        <height>10*</height>
+        <height>70</height>
       </RowDefinition>
     </RowDefinitions>
     <!--   -->
@@ -46,7 +46,7 @@
     <!--   -->
     <CustomItem class="image" id="logo">
       <hidden>0</hidden>
-      <row>0</row>
+      <row>5</row>
       <column>1</column>
       <rowspan>1</rowspan>
       <columnspan>1</columnspan>
@@ -54,15 +54,15 @@
       <height>37</height>
       <hanchor>center</hanchor>
       <vanchor>top</vanchor>
-      <margin>0,0,0,0</margin>
-      <rotation>0</rotation>
+      <margin>0,20,0,0</margin>
+      <rotation>180</rotation>
       <aspect>1</aspect>
       <filepath>images\moviik_logo.png</filepath>
     </CustomItem>
     <!--   -->
     <CustomItem class="text" id="serviceName">
       <hidden>1</hidden>
-      <row>1</row>
+      <row>4</row>
       <column>0</column>
       <rowspan>1</rowspan>
       <columnspan>3</columnspan>
@@ -70,8 +70,8 @@
       <height>-1</height>
       <hanchor>center</hanchor>
       <vanchor>top</vanchor>
-      <margin>0,25,0,0</margin>
-      <rotation>0</rotation>
+      <margin>0,-10,0,0</margin>
+      <rotation>180</rotation>
       <text>Consultas</text>
       <fontname>Arial</fontname>
       <fontsize>14</fontsize>
@@ -83,7 +83,7 @@
     <!--   -->
     <CustomItem class="text" id="serviceDescription">
       <hidden>1</hidden>
-      <row>2</row>
+      <row>3</row>
       <column>0</column>
       <rowspan>1</rowspan>
       <columnspan>3</columnspan>
@@ -91,8 +91,8 @@
       <height>-1</height>
       <hanchor>center</hanchor>
       <vanchor>center</vanchor>
-      <margin>0,0,0,0</margin>
-      <rotation>0</rotation>
+      <margin>0,0 ,0,0</margin>
+      <rotation>180</rotation>
       <text>Serviço de consultas</text>
       <fontname>Arial</fontname>
       <fontsize>10</fontsize>
@@ -104,7 +104,7 @@
     <!--   -->
     <CustomItem class="text" id="label">
       <hidden>0</hidden>
-      <row>3</row>
+      <row>2</row>
       <column>0</column>
       <rowspan>1</rowspan>
       <columnspan>3</columnspan>
@@ -112,8 +112,8 @@
       <height>-1</height>
       <hanchor>center</hanchor>
       <vanchor>center</vanchor>
-      <margin>0,0,0,0</margin>
-      <rotation>0</rotation>
+      <margin>0,-10,0,0</margin>
+      <rotation>180</rotation>
       <text>A01</text>
       <fontname>Arial</fontname>
       <fontsize>48</fontsize>
@@ -121,32 +121,12 @@
       <italic>0</italic>
       <antialias>0</antialias>
       <flags>0x00000024</flags>
+      <rotation>180</rotation>
     </CustomItem>
     <!--   -->
     <CustomItem class="text" id="date">
       <hidden>1</hidden>
-      <row>4</row>
-      <column>0</column>
-      <rowspan>1</rowspan>
-      <columnspan>2</columnspan>
-      <width>160</width>
-      <height>-1</height>
-      <hanchor>center</hanchor>
-      <vanchor>top</vanchor>
-      <margin>0,10,0,0</margin>
-      <rotation>0</rotation>
-      <text>2019/12/10</text>
-      <fontname>Arial</fontname>
-      <fontsize>10</fontsize>
-      <bold>0</bold>
-      <italic>0</italic>
-      <antialias>0</antialias>
-      <flags>0x00000024</flags>
-    </CustomItem>
-    <!--   -->
-    <CustomItem class="text" id="time">
-      <hidden>1</hidden>
-      <row>4</row>
+      <row>1</row>
       <column>1</column>
       <rowspan>1</rowspan>
       <columnspan>2</columnspan>
@@ -154,20 +134,41 @@
       <height>-1</height>
       <hanchor>center</hanchor>
       <vanchor>top</vanchor>
-      <margin>0,10,0,0</margin>
-      <rotation>0</rotation>
+      <margin>0,-25,0,0</margin>
+      <rotation>180</rotation>
+      <text>2019/12/10</text>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
+      <bold>0</bold>
+      <italic>0</italic>
+      <antialias>0</antialias>
+      <flags>0x00000025</flags>
+    </CustomItem>
+    <!--   -->
+    <CustomItem class="text" id="time">
+      <hidden>1</hidden>
+      <row>1</row>
+      <column>0</column>
+      <rowspan>1</rowspan>
+      <columnspan>2</columnspan>
+      <width>160</width>
+      <height>-1</height>
+      <hanchor>center</hanchor>
+      <vanchor>top</vanchor>
+      <margin>0,-25,0,0</margin>
+      <rotation>180</rotation>
       <text>16:34</text>
       <fontname>Arial</fontname>
       <fontsize>10</fontsize>
       <bold>0</bold>
       <italic>0</italic>
       <antialias>0</antialias>
-      <flags>0x00000024</flags>
+      <flags>0x00000025</flags>
     </CustomItem>
     <!--   -->
     <CustomItem class="text" id="peopleAhead">
       <hidden>1</hidden>
-      <row>5</row>
+      <row>0</row>
       <column>0</column>
       <rowspan>1</rowspan>
       <columnspan>3</columnspan>
@@ -176,14 +177,14 @@
       <hanchor>center</hanchor>
       <vanchor>top</vanchor>
       <margin>0,0,0,0</margin>
-      <rotation>0</rotation>
+      <rotation>180</rotation>
       <text>Pessoas à frente: 4</text>
       <fontname>Arial</fontname>
       <fontsize>8</fontsize>
       <bold>0</bold>
       <italic>0</italic>
       <antialias>0</antialias>
-      <flags>0x00000024</flags>
+      <flags>0x00000025</flags>
     </CustomItem>
     <!--   -->
   </CustomItems>
