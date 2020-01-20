@@ -71,7 +71,7 @@ System requirements
 1. cd ~
 1. Somehow, clone mik-dispenser
     1. cd mik-dispenser
-    1. git checkout n2019-10-09-ipc
+    1. git checkout n2020-01-09-online-sm
     1. npm run electron_install
 1. cd ~
 1. Lets take care of systemd application management
