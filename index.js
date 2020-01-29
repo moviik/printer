@@ -9,7 +9,7 @@ const Modus3Adapter = require('lib/adapter/modus3_adapter')
 const PrinterController = require('lib/printer_controller')
 const printErrors = Modus3Adapter.getPrintErrors()
 
-const printerController = new PrinterController(Modus3Adapter, 1000, 1000)
+const printerController = new PrinterController(Modus3Adapter, 1000, 200)
 
 function registerEvents (server) {
   const statusParser = Modus3Adapter.getStatusParser()
