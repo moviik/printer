@@ -7,9 +7,12 @@ const EventEmitter = require('events')
 
 const Modus3Adapter = require('lib/adapter/modus3_adapter')
 const PrinterController = require('lib/printer_controller')
+const TicketBuilder = require('lib/ticket_template/ticket_builder')
+const TicketBuilderError = require('lib/errors/ticket_builder_error')
 const PrinterError = Modus3Adapter.getPrinterError()
 
 const printerController = new PrinterController(Modus3Adapter, 1000, 200)
+const ticketBuilder = new TicketBuilder(printerController, ['label'])
 
 function registerEvents (server) {
   const statusParser = Modus3Adapter.getStatusParser()
@@ -58,12 +61,14 @@ function configIpcServer () {
     })
     server.on('printer.print', (payload, socket) => {
       try {
-        printerController.setXmlTagValue('label.text', payload.label)
+        ticketBuilder.build(payload)
         printerController.printXml()
         server.broadcast('printer.print_reply', { success: true })
       } catch (error) {
         if (error instanceof PrinterError) {
           server.broadcast('printer.print_reply', { success: false, error_code: PrinterError.toString(error.code) })
+        } if (error instanceof TicketBuilderError) {
+          server.broadcast('printer.print_reply', { success: false, error_code: error.message })
         } else {
           server.broadcast('printer.print_reply', { success: false, error_code: `unknown ${error.message}` })
         }
