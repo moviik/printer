@@ -7,7 +7,7 @@ const EventEmitter = require('events')
 
 const Modus3Adapter = require('lib/adapter/modus3_adapter')
 const PrinterController = require('lib/printer_controller')
-const printErrors = Modus3Adapter.getPrintErrors()
+const PrinterError = Modus3Adapter.getPrinterError()
 
 const printerController = new PrinterController(Modus3Adapter, 1000, 200)
 
@@ -62,7 +62,11 @@ function configIpcServer () {
         printerController.printXml()
         server.broadcast('printer.print_reply', { success: true })
       } catch (error) {
-        server.broadcast('printer.print_reply', { success: false, error_code: printErrors.toString(error.code) })
+        if (error instanceof PrinterError) {
+          server.broadcast('printer.print_reply', { success: false, error_code: PrinterError.toString(error.code) })
+        } else {
+          server.broadcast('printer.print_reply', { success: false, error_code: `unknown ${error.message}` })
+        }
       }
     })
   })

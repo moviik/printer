@@ -15,8 +15,8 @@ describe('Ticket builder', () => {
         static openPrinter () {}
         static closePrinter () {}
         static printerStatus () { }
-        static getStatusErrors () { }
-        static getPrintErrors () {}
+        static getStatusError () { }
+        static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
         static setXmlTagValue (handle, tag, value) {
@@ -42,8 +42,8 @@ describe('Ticket builder', () => {
         static openPrinter () {}
         static closePrinter () {}
         static printerStatus () {}
-        static getStatusErrors () {}
-        static getPrintErrors () {}
+        static getStatusError () {}
+        static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
         static setXmlTagValue () {}

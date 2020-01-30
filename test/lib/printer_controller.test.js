@@ -30,8 +30,8 @@ describe('PrinterController', () => {
         static openPrinter () {}
         static closePrinter () {}
         static printerStatus (printerStatus) { printerStatus.writeUInt32BE(newStatus) }
-        static getStatusErrors () {}
-        static getPrintErrors () {}
+        static getStatusError () {}
+        static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
       }
@@ -55,8 +55,8 @@ describe('PrinterController', () => {
         static openPrinter () {}
         static closePrinter () {}
         static printerStatus (printerStatus) { printerStatus.writeUInt32BE(newStatus) }
-        static getStatusErrors () {}
-        static getPrintErrors () {}
+        static getStatusError () {}
+        static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
       }
@@ -88,8 +88,8 @@ describe('PrinterController', () => {
         static openPrinter () { throw new PrinterError('message', 1) }
         static closePrinter () {}
         static printerStatus (printerStatus) { printerStatus.writeUInt32BE(newStatus) }
-        static getStatusErrors () { return { toString: () => { return error_code } } }
-        static getPrintErrors () {}
+        static getStatusError () { return { toString: () => { return error_code } } }
+        static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
       }
@@ -130,8 +130,8 @@ describe('PrinterController', () => {
         static openPrinter () {}
         static closePrinter () {}
         static printerStatus (printerStatus) { printerStatus.writeUInt32BE(firstStatus) }
-        static getStatusErrors () {}
-        static getPrintErrors () { return { toString: () => { return error_code } } }
+        static getStatusError () {}
+        static getPrinterError () { return { toString: () => { return error_code } } }
         static getHandle () { throw new PrinterError('message', 1) }
         static freeHandle () {}
       }
@@ -174,8 +174,8 @@ describe('PrinterController', () => {
         static openPrinter () { throw new PrinterError('message', 1) }
         static closePrinter () { }
         static printerStatus () { }
-        static getStatusErrors () { return { toString: () => { return error_code } } }
-        static getPrintErrors () { return { toString: () => { return error_code } } }
+        static getStatusError () { return { toString: () => { return error_code } } }
+        static getPrinterError () { return { toString: () => { return error_code } } }
         static getHandle () { throw new PrinterError('message', 1) }
         static freeHandle () { }
       }
@@ -210,8 +210,8 @@ describe('PrinterController', () => {
         static openPrinter () {}
         static closePrinter () { }
         static printerStatus () { }
-        static getStatusErrors () { }
-        static getPrintErrors () {}
+        static getStatusError () { }
+        static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
       }
@@ -232,8 +232,8 @@ describe('PrinterController', () => {
         static openPrinter () {}
         static closePrinter () { throw new PrinterError('message', 1) }
         static printerStatus () { }
-        static getStatusErrors () { return { toString: () => { return error_code } } }
-        static getPrintErrors () {}
+        static getStatusError () { return { toString: () => { return error_code } } }
+        static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
       }
@@ -260,8 +260,8 @@ describe('PrinterController', () => {
         static openPrinter () {}
         static closePrinter () { }
         static printerStatus () { }
-        static getStatusErrors () { }
-        static getPrintErrors () { return { toString: () => { return error_code } } }
+        static getStatusError () { }
+        static getPrinterError () { return { toString: () => { return error_code } } }
         static getHandle () {}
         static freeHandle () { throw new PrinterError('message', 1) }
       }
@@ -291,8 +291,8 @@ describe('PrinterController', () => {
         static openPrinter () {}
         static closePrinter () {}
         static printerStatus (printerStatus) { printerStatus.writeUInt32BE(newStatus) }
-        static getStatusErrors () { return { toString: () => { return error_code } } }
-        static getPrintErrors () {}
+        static getStatusError () { return { toString: () => { return error_code } } }
+        static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
       }
