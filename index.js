@@ -77,5 +77,5 @@ emitter.on('stop', () => {
 
 emitter.on('start', () => {
   printerController.openPrinter()
-  printerController.setXmlFile('lib/ticket_template/Moviik.xml')
+  printerController.setXmlFile('lib/ticket_template/80mm.xml')
 })

@@ -38,7 +38,7 @@ function printCommand (args, options) {
 
   printerController.on('printer.opened', () => {
     const ticketBuilder = new TicketBuilder(printerController, ['label'])
-    printerController.setXmlFile('lib/ticket_template/Moviik.xml')
+    printerController.setXmlFile('lib/ticket_template/80mm.xml')
 
     if (options.timestamp) {
       const timestamp = moment(options.timestamp)
