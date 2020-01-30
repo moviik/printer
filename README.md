@@ -44,12 +44,13 @@ System requirements
     1. sudo raspi-config
     1. "Localisation options" to set timezone "Lisbon", keyboard layout, and add a locale "pt_PT.UTF-8 UTF-8". Keep the default one  
     1. "Network options" if you don't already have an internet connection. If using wifi don't forget to set location
-1. Updates
+1. Lets make sure the image and the Rpi firmware is up to date. It is recommended to run these commands in a fresh sd card image when you get a new Rpi
     1. sudo apt-get update
     1. sudo apt-get vim (it is an essential tool)
     1. sudo apt-get upgrade
     1. sudo apt-get dist-upgrade
     1. sudo rpi-update
+    1. sudo rpi-eeprom-update
     1. sudo reboot
 1. Login again, let's take care of the GUI and other dependencies
     1. sudo apt-get install --no-install-recommends xserver-xorg xinput x11-xserver-utils libxss1
