@@ -12,7 +12,11 @@ const TicketBuilderError = require('lib/errors/ticket_builder_error')
 const PrinterError = Modus3Adapter.getPrinterError()
 
 const printerController = new PrinterController(Modus3Adapter, 1000, 200)
-const ticketBuilder = new TicketBuilder(printerController, ['label'])
+const ticketBuilder = new TicketBuilder(
+  printerController,
+  ['label'],
+  ['serviceName', 'serviceDescription', 'dateTime', 'footer']
+)
 
 function registerEvents (server) {
   const statusParser = Modus3Adapter.getStatusParser()
