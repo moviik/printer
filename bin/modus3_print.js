@@ -19,7 +19,7 @@ program
   .option('--label <label>', 'Label to print', program.STRING, undefined, true)
   .option('--serviceName [serviceName]', 'Service name', program.STRING, '', false)
   .option('--serviceDescription [serviceDescription]', 'Service description', program.STRING, '', false)
-  .option('--datetime [datetime]', 'Date time message under the ticket label', program.STRING, '', false)
+  .option('--dateTime [dateTime]', 'Date time message under the ticket label', program.STRING, '', false)
   .option('--footer [footer]', 'footer', program.STRING, '', false)
   .action(printCommand)
 

@@ -118,7 +118,7 @@
       <rotation>180</rotation>
     </CustomItem>
     <!--   -->
-    <CustomItem class="text" id="datetime">
+    <CustomItem class="text" id="dateTime">
       <hidden>1</hidden>
       <row>1</row>
       <column>0</column>
