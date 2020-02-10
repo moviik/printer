@@ -76,7 +76,7 @@ System requirements
 1. cd ~
 1. Lets take care of systemd application management
     1. cd mik-printer/setup/raspbian
-    1. sudo ./systemd.sh (this might take a while)
+    1. sudo ./systemd.sh (this is silent and might take a while)
 1. Lets clean things up
     1. cd ~
     1. rm -rf mik-printer
@@ -99,3 +99,7 @@ System requirements
     1. cd ..
     1. sudo ./install.sh
 1. Done, reboot
+1. If you want to shrink the image
+    1. sudo fdisk -l raspbian-buster.img
+    1. check the output of the latest partition, and copy "End"
+    1. sudo truncate --size=$[(<End>+1)*512] raspbian-buster.img
