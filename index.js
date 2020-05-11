@@ -71,7 +71,7 @@ function configIpcServer () {
       } catch (error) {
         if (error instanceof PrinterError) {
           server.broadcast('printer.print_reply', { success: false, error_code: PrinterError.toString(error.code) })
-        } if (error instanceof TicketBuilderError) {
+        } else if (error instanceof TicketBuilderError) {
           server.broadcast('printer.print_reply', { success: false, error_code: error.message })
         } else {
           server.broadcast('printer.print_reply', { success: false, error_code: `unknown ${error.message}` })
