@@ -6,8 +6,7 @@ const TicketBuilderError = require('lib/errors/ticket_builder_error')
 describe('Ticket builder', () => {
   describe('build', () => {
     it('should build', (done) => {
-      let setCount = 0
-
+      let callCount = 0
       const option = 'label'
       const optionValue = 'whatevs'
 
@@ -20,16 +19,17 @@ describe('Ticket builder', () => {
         static getHandle () {}
         static freeHandle () {}
         static setXmlTagValue (handle, tag, value) {
-          setCount++
-          if (setCount === 1) {
-            expect(tag).toEqual(`${option}.hidden`)
-            expect(value).toEqual(0)
-          }
-          if (setCount === 2) {
-            expect(tag).toEqual(`${option}.text`)
-            expect(value).toEqual(optionValue)
-            done()
-          }
+          expect(tag).toEqual(option)
+          expect(value).toEqual(optionValue)
+          expect(callCount).toEqual(1)
+          done()
+        }
+
+        static toggleXmlTagValue (handle, tag, enable) {
+          expect(tag).toEqual(option)
+          expect(enable).toEqual(true)
+          expect(callCount).toEqual(0)
+          callCount++
         }
       }
       const controller = new PrinterController(FakeAdapter, 100, 100)
@@ -38,7 +38,7 @@ describe('Ticket builder', () => {
     })
 
     it('should build with optional', (done) => {
-      let setCount = 0
+      let callCount = 0
 
       const option = 'label'
       const optionValue = 'whatevs'
@@ -54,20 +54,22 @@ describe('Ticket builder', () => {
         static getHandle () {}
         static freeHandle () {}
         static setXmlTagValue (handle, tag, value) {
-          setCount++
-          if (setCount === 1) {
-            expect(tag).toEqual(`${optionalField}.hidden`)
-            expect(value).toEqual(1)
-            done()
+          expect(callCount).toEqual(2)
+          expect(tag).toEqual(option)
+          expect(value).toEqual(optionValue)
+          done()
+        }
+
+        static toggleXmlTagValue (handle, tag, enable) {
+          if (callCount === 0) {
+            expect(tag).toEqual(optionalField)
+            expect(enable).toEqual(false)
           }
-          if (setCount === 2) {
-            expect(tag).toEqual(`${option}.hidden`)
-            expect(value).toEqual(0)
+          if (callCount === 1) {
+            expect(tag).toEqual(option)
+            expect(enable).toEqual(true)
           }
-          if (setCount === 3) {
-            expect(tag).toEqual(`${option}.text`)
-            expect(value).toEqual(optionValue)
-          }
+          callCount++
         }
       }
       const controller = new PrinterController(FakeAdapter, 100, 100)
@@ -85,6 +87,7 @@ describe('Ticket builder', () => {
         static getHandle () {}
         static freeHandle () {}
         static setXmlTagValue () {}
+        static toggleXmlTagValue () {}
       }
       const controller = new PrinterController(FakeAdapter, 100, 100)
       const required = 'whatevs'
