@@ -61,8 +61,10 @@ System requirements
     1. sudo reboot
 1. cd ~
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
-    1. cd mik-printer/setup/raspbian
-    1. sudo ./printer.sh
+    1. Choose your printer
+        1. cd mik-printer/setup/raspbian and ./modus3_printer.sh
+        1. cd mik-printer/setup/mint and ./btps80_printer.sh (this one does not work in arm)
+    1. cd ~/mik-printer/setup/raspbian
     1. sudo ./crontab.sh
     1. ./electron.sh
     1. export PATH=${PATH}:/home/pi/node-v10.11.0-linux-armv7l/bin
