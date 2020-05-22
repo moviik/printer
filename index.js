@@ -92,5 +92,5 @@ emitter.on('stop', () => {
 emitter.on('start', () => {
   printerController.openPrinter()
   printerController.setXmlFile('lib/ticket_template/60mm.xml')
-  // printerController.setXmlFile('lib/ticket_template/btps80.txt')
+  // printerController.setXmlFile('lib/ticket_template/btps80.html')
 })
