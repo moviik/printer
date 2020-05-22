@@ -6,6 +6,7 @@ const ipc = require('node-ipc')
 const EventEmitter = require('events')
 
 const chosenAdapter = require('lib/adapter/modus3_adapter')
+// const chosenAdapter = require('lib/adapter/btps80_adapter')
 const PrinterController = require('lib/printer_controller')
 const TicketBuilder = require('lib/ticket_template/ticket_builder')
 const TicketBuilderError = require('lib/errors/ticket_builder_error')
@@ -91,4 +92,5 @@ emitter.on('stop', () => {
 emitter.on('start', () => {
   printerController.openPrinter()
   printerController.setXmlFile('lib/ticket_template/60mm.xml')
+  // printerController.setXmlFile('lib/ticket_template/btps80.txt')
 })
