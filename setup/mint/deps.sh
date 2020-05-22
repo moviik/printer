@@ -16,7 +16,7 @@ fi
 DEFAULT_USER="$(id -nu 1000)"
 
 # cups service
-apt-get install -y cups
+apt-get install -y cups libcups2-dev
 
 # so the current user has access to printer service
 usermod -a -G lp $DEFAULT_USER
