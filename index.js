@@ -5,13 +5,13 @@ global.lo_ = require('lodash')
 const ipc = require('node-ipc')
 const EventEmitter = require('events')
 
-const Modus3Adapter = require('lib/adapter/modus3_adapter')
+const chosenAdapter = require('lib/adapter/modus3_adapter')
 const PrinterController = require('lib/printer_controller')
 const TicketBuilder = require('lib/ticket_template/ticket_builder')
 const TicketBuilderError = require('lib/errors/ticket_builder_error')
-const PrinterError = Modus3Adapter.getPrinterError()
+const PrinterError = chosenAdapter.getPrinterError()
 
-const printerController = new PrinterController(Modus3Adapter, 1000, 200)
+const printerController = new PrinterController(chosenAdapter, 1000, 200)
 const ticketBuilder = new TicketBuilder(
   printerController,
   ['label'],
@@ -19,7 +19,7 @@ const ticketBuilder = new TicketBuilder(
 )
 
 function registerEvents (server) {
-  const statusParser = Modus3Adapter.getStatusParser()
+  const statusParser = chosenAdapter.getStatusParser()
   printerController.on('printer.opened', () => {
     server.broadcast('printer.opened')
   })
@@ -63,10 +63,10 @@ function configIpcServer () {
     server.on('socket.disconnected', (socket, destroyedSocketId) => {
       emitter.emit('stop')
     })
-    server.on('printer.print', (payload, socket) => {
+    server.on('printer.print', async (payload, socket) => {
       try {
         ticketBuilder.build(payload)
-        printerController.printXml()
+        await printerController.printXml()
         server.broadcast('printer.print_reply', { success: true })
       } catch (error) {
         if (error instanceof PrinterError) {
