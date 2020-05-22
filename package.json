@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/edigma/mik-printer#readme",
   "dependencies": {
+    "@thiagoelg/node-printer": "^0.5.2",
     "app-module-path": "^2.2.0",
     "ffi": "^2.3.0",
     "lodash": "^4.17.15",
