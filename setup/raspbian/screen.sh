@@ -18,4 +18,6 @@ sed -i '/#xserver-command=X/c\xserver-command=X -s 0 dpms -nocursor' /etc/lightd
 cp -r ./screens /etc/xdg/openbox
 
 # 10"
-echo "/etc/xdg/openbox/screens/10_inch.sh" > /etc/xdg/openbox/autostart
+# echo "/etc/xdg/openbox/screens/10_inch.sh" > /etc/xdg/openbox/autostart
+# 14"
+echo "/etc/xdg/openbox/screens/14_inch.sh" > /etc/xdg/openbox/autostart
