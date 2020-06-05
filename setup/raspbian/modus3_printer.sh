@@ -45,7 +45,7 @@ gunzip -d /usr/share/cups/model/Custom/Modus3.ppd.gz
 ## update page size 80MM
 ## lpadmin -p CUSTOM_SPA_MODUS3 -o PageSize=X80MMY58MM
 ## update page size 60MM
-sudo lpadmin -p CUSTOM_SPA_MODUS3 -o PageSize=X54MMYRoll
+lpadmin -p CUSTOM_SPA_MODUS3 -o PageSize=X54MMYRoll
 
 ## enable partial cut
 ## outputMouth sensor must be disabled in the printer flash for this to work

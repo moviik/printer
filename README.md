@@ -46,7 +46,7 @@ System requirements
     1. "Network options" if you don't already have an internet connection. If using wifi don't forget to set location
 1. Lets make sure the image and the Rpi firmware is up to date. It is recommended to run these commands in a fresh sd card image when you get a new Rpi
     1. sudo apt-get update
-    1. sudo apt-get vim (it is an essential tool)
+    1. sudo apt-get install vim (it is an essential tool)
     1. sudo apt-get upgrade
     1. sudo apt-get dist-upgrade
     1. sudo rpi-update
@@ -57,7 +57,8 @@ System requirements
     1. sudo apt-get install openbox
     1. sudo apt-get install lightdm
     1. sudo raspi-config
-    1. Boot Options -> boot to GUI without password
+    1. Boot Boot Options -> Desktop/CLI -> boot to GUI without password
+    1. Boot Options -> Wait for Network at Boot -> no
     1. sudo reboot
 1. cd ~
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
@@ -69,8 +70,9 @@ System requirements
     1. ./electron.sh
     1. export PATH=${PATH}:/home/pi/node-v10.11.0-linux-armv7l/bin
     1. sudo ./screen.sh
+    1. sudo ./networking.sh
     1. cd ~/mik-printer
-    1. npm i --production
+    1. npm i --production (if in raspbian, you should remove @thiagoelg/node-printer dependency)
 1. cd ~
 1. Somehow, clone mik-dispenser
     1. cd mik-dispenser
