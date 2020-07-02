@@ -14,9 +14,13 @@ install_dependencies:
     - apt-get update
     - apt-get install -y libcups2-dev
     - npm install
+  only:
+    - merge_requests
 
 tests:
   stage: test
   script:
     - npm run lint
     - npm test
+  only:
+    - merge_requests
