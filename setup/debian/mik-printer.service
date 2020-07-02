@@ -1,0 +1,17 @@
+[Unit]
+Description=Moviik's printer software
+ConditionFileIsExecutable=/usr/local/bin/node-v10.11.0-linux-x64/bin/node
+ConditionFileIsExecutable=/usr/local/bin/node-v10.11.0-linux-x64/bin/npm
+
+[Service]
+User=admin
+Group=admin
+Type=simple
+WorkingDirectory=/usr/local/bin/mik-printer
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/usr/local/bin/node-v10.11.0-linux-x64/bin"
+ExecStart=/usr/local/bin/node-v10.11.0-linux-x64/bin/npm start
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=mik-dispenser.target

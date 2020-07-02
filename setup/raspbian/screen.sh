@@ -15,7 +15,7 @@ sed -i '/<\/keyboard>*/i<keybind key="C-A-t"><action name="Execute"><command>lxt
 # remove mouse pointer
 sed -i '/#xserver-command=X/c\xserver-command=X -s 0 dpms -nocursor' /etc/lightdm/lightdm.conf
 
-cp -r ./screens /etc/xdg/openbox
+cp -r ../screens /etc/xdg/openbox
 
 # 10"
 # echo "/etc/xdg/openbox/screens/10_inch.sh" > /etc/xdg/openbox/autostart

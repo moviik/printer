@@ -14,7 +14,7 @@ cp ./mik-dispenser.service /etc/systemd/system
 
 cp -rp /home/$DEFAULT_USER/mik-printer /usr/local/bin
 cp -rp /home/$DEFAULT_USER/mik-dispenser /usr/local/bin
-cp -rp /home/$DEFAULT_USER/node-v10.11.0-linux-armv7l /usr/local/bin
+cp -rp /home/$DEFAULT_USER/node-v10.11.0-linux-x64 /usr/local/bin
 
 systemctl enable mik-printer
 systemctl enable mik-dispenser

@@ -26,11 +26,15 @@ usermod -a -G lpadmin $DEFAULT_USER
 
 # need to install unrar to extract this
 apt-get install -y unrar-free
-unrar e "$BTP_FILE"
+unrar x "$BTP_FILE"
 
 # extract required cups drivers
 BTP_FILE='./BTP-S80_LinuxDrv_EN V1.0/BTPS80_x64/BTPS80(180).tar'
-tar -xvf "$MODUS_FILE"
+
+# next command will give you an error because the file has spaces
+# I've tried everything, trust me. It just does not deserve it
+# Just run the rest of the commands by hand, you lazy
+tar -xvf $(echo \"$MODUS_FILE\")
 
 #install printer
 mkdir /usr/share/cups/model/snbc
@@ -39,4 +43,4 @@ cp 'BTPS80(180)/rastertoBTPS80(180)' /usr/lib/cups/filter/
 lpadmin -p SNBC_BTPS80 -E -v 'usb://SNBC/BTP-S80(U)1' -m snbc/'BTPS80(180).ppd'
 
 # lpadmin -p SNBC_BTPS80 -o PageSize=Custom.280x180
-sudo lpadmin -p SNBC_BTPS80 -o PageSize=Paper210
+lpadmin -p SNBC_BTPS80 -o PageSize=Paper210

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=14inch
+Type=Application
+Exec=/etc/xdg/screens/14_inch.sh
+Terminal=false

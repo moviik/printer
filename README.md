@@ -1,12 +1,3 @@
-# Mik-Printer
-This application is responsible to print tickets and obtain printer status.
-The layout of the ticket is defined in lib/printer/ticket-template.
-
-# Contribute
-System requirements
- - node (version 10.11.0) - because node-ffi dependency does not work with node10+
- - see setup deps for your environment
-
 # RPi 4 lite image build
 1. Get most recent lite raspbian version (tested with 2019-09-26-raspbian-buster-lite.img)
 1. Extend it to free some space to create a new partition
