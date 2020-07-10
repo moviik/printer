@@ -5,12 +5,14 @@
     1. Make sure there is no screen-saver (in Ubuntu go to Settings Menu, Power, or Lock you should see this)
     1. Make sure there is no screen-dim or power-off (in Ubuntu should be in Settings Menu)
     1. Go to user settings and set your user to login automatically
+    1. sudo apt-get install chromium-browser (needed for npm package pdf-puppeteer)
     1. sudo reboot
 1. cd ~
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
     1. Choose your printer
         1. cd mik-printer/setup/printers and ./modus3_printer.sh
         1. cd mik-printer/setup/printers and ./btps80_printer.sh (this one does not work in arm)
+        1. cd mik-printer/setup/printers and ./tm_t20III_printer.sh
     1. cd ~/mik-printer/setup
     1. sudo ./crontab.sh
     1. cd debian

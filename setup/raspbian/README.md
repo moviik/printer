@@ -47,6 +47,7 @@
     1. sudo apt-get install --no-install-recommends xserver-xorg xinput x11-xserver-utils libxss1
     1. sudo apt-get install openbox
     1. sudo apt-get install lightdm
+    1. sudo apt-get install chromium-browser (needed for npm package pdf-puppeteer)
     1. sudo raspi-config
     1. Boot Boot Options -> Desktop/CLI -> boot to GUI without password
     1. Boot Options -> Wait for Network at Boot -> no
@@ -54,8 +55,8 @@
 1. cd ~
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
     1. Choose your printer
-        1. cd mik-printer/setup/raspbian and ./modus3_printer.sh
-        1. cd mik-printer/setup/mint and ./btps80_printer.sh (this one does not work in arm)
+        1. cd mik-printer/setup/printers and ./modus3_printer.sh
+        1. cd mik-printer/setup/printers and ./tm_t20III_printer.sh
     1. cd ~/mik-printer/setup/raspbian
     1. sudo ./crontab.sh
     1. ./electron.sh
