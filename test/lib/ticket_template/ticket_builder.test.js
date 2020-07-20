@@ -18,14 +18,14 @@ describe('Ticket builder', () => {
         static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
-        static setXmlTagValue (handle, tag, value) {
+        static setTagValue (handle, tag, value) {
           expect(tag).toEqual(option)
           expect(value).toEqual(optionValue)
           expect(callCount).toEqual(1)
           done()
         }
 
-        static toggleXmlTagValue (handle, tag, enable) {
+        static toggleTagValue (handle, tag, enable) {
           expect(tag).toEqual(option)
           expect(enable).toEqual(true)
           expect(callCount).toEqual(0)
@@ -53,14 +53,14 @@ describe('Ticket builder', () => {
         static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
-        static setXmlTagValue (handle, tag, value) {
+        static setTagValue (handle, tag, value) {
           expect(callCount).toEqual(2)
           expect(tag).toEqual(option)
           expect(value).toEqual(optionValue)
           done()
         }
 
-        static toggleXmlTagValue (handle, tag, enable) {
+        static toggleTagValue (handle, tag, enable) {
           if (callCount === 0) {
             expect(tag).toEqual(optionalField)
             expect(enable).toEqual(false)
@@ -86,8 +86,8 @@ describe('Ticket builder', () => {
         static getPrinterError () {}
         static getHandle () {}
         static freeHandle () {}
-        static setXmlTagValue () {}
-        static toggleXmlTagValue () {}
+        static setTagValue () {}
+        static toggleTagValue () {}
       }
       const controller = new PrinterController(FakeAdapter, 100, 100)
       const required = 'whatevs'

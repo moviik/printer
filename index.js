@@ -67,7 +67,7 @@ function configIpcServer () {
     server.on('printer.print', async (payload, socket) => {
       try {
         ticketBuilder.build(payload)
-        await printerController.printXml()
+        await printerController.print()
         server.broadcast('printer.print_reply', { success: true })
       } catch (error) {
         if (error instanceof PrinterError) {
@@ -91,6 +91,6 @@ emitter.on('stop', () => {
 
 emitter.on('start', () => {
   printerController.openPrinter()
-  printerController.setXmlFile('lib/ticket_template/60mm.xml')
-  // printerController.setXmlFile('lib/ticket_template/btps80.html')
+  printerController.setFile('lib/ticket_template/60mm.xml')
+  // printerController.setFile('lib/ticket_template/btps80.html')
 })

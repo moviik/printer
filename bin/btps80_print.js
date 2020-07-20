@@ -37,10 +37,10 @@ function printCommand (args, options) {
       ['label'],
       ['serviceName', 'serviceDescription', 'dateTime', 'peopleAhead']
     )
-    printerController.setXmlFile('lib/ticket_template/btps80.html')
+    printerController.setFile('lib/ticket_template/btps80.html')
 
     ticketBuilder.build(options)
-    await printerController.printXml()
+    await printerController.print()
     printerController.closePrinter()
   })
   printerController.openPrinter()

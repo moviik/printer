@@ -1,4 +1,4 @@
-const XmlManager = require('lib/cpt/xml_manager')
+const FileManager = require('lib/cpt/file_manager')
 const PrinterAdapter = require('lib/adapter/printer_adapter')
 
 function adapterSetGetHandle (adapter) {
@@ -11,13 +11,13 @@ function adapterSetFreeHandle (adapter) {
   }
 }
 
-describe('XmlManager', () => {
+describe('FileManager', () => {
   describe('openPrinter', () => {
     test('should open printer', () => {
       class FakeAdapater extends PrinterAdapter {}
       adapterSetGetHandle(FakeAdapater)
 
-      const manager = new XmlManager(FakeAdapater)
+      const manager = new FileManager(FakeAdapater)
       manager.openPrinter()
     })
 
@@ -25,7 +25,7 @@ describe('XmlManager', () => {
       const adapterError = new Error('message')
       class FakeAdapater extends PrinterAdapter {static getHandle () { throw adapterError }}
 
-      const manager = new XmlManager(FakeAdapater)
+      const manager = new FileManager(FakeAdapater)
       try {
         manager.openPrinter()
       } catch (error) {
@@ -39,7 +39,7 @@ describe('XmlManager', () => {
       class FakeAdapater extends PrinterAdapter {}
       adapterSetFreeHandle(FakeAdapater)
 
-      const manager = new XmlManager(FakeAdapater)
+      const manager = new FileManager(FakeAdapater)
       manager.closePrinter()
     })
 
@@ -47,7 +47,7 @@ describe('XmlManager', () => {
       const adapterError = new Error('message')
       class FakeAdapater extends PrinterAdapter {static freeHandle () { throw adapterError }}
 
-      const manager = new XmlManager(FakeAdapater)
+      const manager = new FileManager(FakeAdapater)
       try {
         manager.closePrinter()
       } catch (error) {

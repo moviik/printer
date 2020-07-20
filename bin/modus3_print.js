@@ -33,10 +33,10 @@ function printCommand (args, options) {
 
   printerController.on('printer.opened', () => {
     const ticketBuilder = new TicketBuilder(printerController, ['label'])
-    printerController.setXmlFile('lib/ticket_template/60mm.xml')
+    printerController.setFile('lib/ticket_template/60mm.xml')
 
     ticketBuilder.build(options)
-    printerController.printXml()
+    printerController.print()
     printerController.closePrinter()
   })
   printerController.openPrinter()
