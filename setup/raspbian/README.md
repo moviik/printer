@@ -57,6 +57,7 @@
     1. Choose your printer
         1. cd mik-printer/setup/printers and ./modus3_printer.sh
         1. cd mik-printer/setup/printers and ./tm_t20III_printer.sh
+        1. cd mik-printer/setup/printers and ./np_3411.sh
     1. cd ~/mik-printer/setup/raspbian
     1. sudo ./crontab.sh
     1. ./electron.sh
