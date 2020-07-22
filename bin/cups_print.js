@@ -7,15 +7,16 @@ const program = require('caporal')
 const prompt = require('prompt-async')
 
 const PrinterController = require('lib/printer_controller')
-const BTPS80Adapter = require('lib/adapter/btps80_adapter')
+const CupsAdapter = require('lib/adapter/cups_adapter')
 const TicketBuilder = require('lib/ticket_template/ticket_builder')
 
 prompt.start()
 
 program
   .version('1.0.0')
-  .description('BTPS80')
+  .description('CUPS')
   .command('print', 'Print a ticket')
+  .option('--printerName <printerName>', 'CUPS printer name', program.STRING, undefined, true)
   .option('--label <label>', 'Label to print', program.STRING, undefined, true)
   .option('--serviceName [serviceName]', 'Service name', program.STRING, '', false)
   .option('--serviceDescription [serviceDescription]', 'Service description', program.STRING, '', false)
@@ -26,7 +27,7 @@ program
 program.parse(process.argv)
 
 function printCommand (args, options) {
-  const printerController = new PrinterController(BTPS80Adapter, 1000, 1000)
+  const printerController = new PrinterController(CupsAdapter, 1000, 1000)
   printerController.on('printer.open_error', (error) => {
     throw new Error('error opening printer')
   })
@@ -37,13 +38,13 @@ function printCommand (args, options) {
       ['label'],
       ['serviceName', 'serviceDescription', 'dateTime', 'peopleAhead']
     )
-    printerController.setFile('lib/ticket_template/btps80.html')
+    printerController.setFile('lib/ticket_template/cups.html')
 
     ticketBuilder.build(options)
     await printerController.print()
     printerController.closePrinter()
   })
-  printerController.openPrinter()
+  printerController.openPrinter(options.printerName)
 }
 
 process.on('unhandledRejection', (reason, p) => {

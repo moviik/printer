@@ -5,11 +5,31 @@ global.lo_ = require('lodash')
 const ipc = require('node-ipc')
 const EventEmitter = require('events')
 
-const chosenAdapter = require('lib/adapter/modus3_adapter')
-// const chosenAdapter = require('lib/adapter/btps80_adapter')
+const modus3Adapter = require('lib/adapter/modus3_adapter')
+const cupsAdapter = require('lib/adapter/cups_adapter')
 const PrinterController = require('lib/printer_controller')
 const TicketBuilder = require('lib/ticket_template/ticket_builder')
 const TicketBuilderError = require('lib/errors/ticket_builder_error')
+const { argv } = process
+
+function getCupsPrinterIndex () {
+  return argv.findIndex((arg) => {
+    return arg.includes('--cups-printer')
+  })
+}
+
+function getAdapter () {
+  return getCupsPrinterIndex() !== -1 ? cupsAdapter : modus3Adapter
+}
+
+function getCupsPrinterName () {
+  return lo_.last(
+    lo_.get(argv, getCupsPrinterIndex())
+      .split('=')
+  )
+}
+
+const chosenAdapter = getAdapter()
 const PrinterError = chosenAdapter.getPrinterError()
 
 const printerController = new PrinterController(chosenAdapter, 1000, 200)
@@ -90,7 +110,11 @@ emitter.on('stop', () => {
 })
 
 emitter.on('start', () => {
-  printerController.openPrinter()
-  printerController.setFile('lib/ticket_template/60mm.xml')
-  // printerController.setFile('lib/ticket_template/btps80.html')
+  if (chosenAdapter === cupsAdapter) {
+    printerController.openPrinter(getCupsPrinterName())
+    printerController.setFile('lib/ticket_template/cups.html')
+  } else {
+    printerController.openPrinter()
+    printerController.setFile('lib/ticket_template/60mm.xml')
+  }
 })
