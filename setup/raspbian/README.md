@@ -48,6 +48,7 @@
     1. sudo apt-get install openbox
     1. sudo apt-get install lightdm
     1. sudo apt-get install chromium-browser (needed for npm package pdf-puppeteer)
+    1. sudo apt-get install cups libcups2-dev libcupsimage2 (needed for npm package @thiagoelg/node-printer)
     1. sudo raspi-config
     1. Boot Boot Options -> Desktop/CLI -> boot to GUI without password
     1. Boot Options -> Wait for Network at Boot -> no
