@@ -47,7 +47,7 @@
     1. sudo apt-get install --no-install-recommends xserver-xorg xinput x11-xserver-utils libxss1
     1. sudo apt-get install --no-install-recommends lightdm
     1. sudo apt-get install --no-install-recommends openbox
-    1. sudo apt-get install chromium-browser (needed for npm package pdf-puppeteer)
+    1. sudo apt-get install chromium-browser (needed for npm package puppeteer)
     1. sudo apt-get install cups libcups2-dev libcupsimage2 (needed for npm package @thiagoelg/node-printer)
     1. sudo raspi-config
     1. Boot Boot Options -> Desktop/CLI -> boot to GUI without password

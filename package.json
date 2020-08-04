@@ -30,7 +30,7 @@
     "lodash": "^4.17.19",
     "mustache": "^4.0.1",
     "node-ipc": "^9.1.1",
-    "pdf-puppeteer": "^1.1.10",
+    "puppeteer": "^5.2.1",
     "xmlbuilder": "^13.0.2"
   },
   "devDependencies": {

@@ -9,7 +9,7 @@ Note: You can use raspbian setup as well, considering the OSs are very similar. 
     1. Make sure there is no screen-dim or power-off (in Ubuntu should be in Settings Menu)
     1. Go to user settings and set your user to login automatically
     1. sudo apt-get install cups libcups2-dev libcupsimage2 (needed for npm package @thiagoelg/node-printer)
-    1. sudo apt-get install chromium-browser (needed for npm package pdf-puppeteer)
+    1. sudo apt-get install chromium-browser (needed for npm package puppeteer)
     1. sudo reboot
 1. cd ~
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
