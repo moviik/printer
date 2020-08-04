@@ -7,13 +7,14 @@ if [ "$(id -u)" != 0 ]
   exit
 fi
 
-apt-get install -y lxterminal
-
 # add lxterminal shortcut to openbox
 sed -i '/<\/keyboard>*/i<keybind key="C-A-t"><action name="Execute"><command>lxterminal</command></action></keybind>' /etc/xdg/openbox/rc.xml
 
+# remove all crap inside /usr/share/lightdm/lightdm.conf.d
+rm /usr/share/lightdm/lightdm.conf.d/*
+
 # remove mouse pointer
-sed -i '/#xserver-command=X/c\xserver-command=X -s 0 dpms -nocursor' /etc/lightdm/lightdm.conf
+cp 50-moviik.conf /usr/share/lightdm/lightdm.conf.d
 
 cp -r ../screens /etc/xdg/openbox
 

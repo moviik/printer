@@ -45,8 +45,8 @@
     1. sudo reboot
 1. Login again, let's take care of the GUI and other dependencies
     1. sudo apt-get install --no-install-recommends xserver-xorg xinput x11-xserver-utils libxss1
-    1. sudo apt-get install openbox
-    1. sudo apt-get install lightdm
+    1. sudo apt-get install --no-install-recommends lightdm
+    1. sudo apt-get install --no-install-recommends openbox
     1. sudo apt-get install chromium-browser (needed for npm package pdf-puppeteer)
     1. sudo apt-get install cups libcups2-dev libcupsimage2 (needed for npm package @thiagoelg/node-printer)
     1. sudo raspi-config
@@ -55,10 +55,7 @@
     1. sudo reboot
 1. cd ~
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
-    1. Choose your printer
-        1. cd mik-printer/setup/printers and ./modus3_printer.sh
-        1. cd mik-printer/setup/printers and ./tm_t20III_printer.sh
-        1. cd mik-printer/setup/printers and ./np_3411.sh
+    1. Choose your printer and run the script inside the printers folder
     1. cd ~/mik-printer/setup/raspbian
     1. sudo ./crontab.sh
     1. ./electron.sh
@@ -66,7 +63,7 @@
     1. sudo ./screen.sh
     1. sudo ./networking.sh
     1. cd ~/mik-printer
-    1. npm i --production (if in raspbian, you should remove @thiagoelg/node-printer dependency)
+    1. PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm i --production
 1. cd ~
 1. Somehow, clone mik-dispenser
     1. cd mik-dispenser

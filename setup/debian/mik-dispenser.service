@@ -6,8 +6,8 @@ Requires=network-online.target mik-printer.service
 After=network-online.target mik-printer.service
 
 [Service]
-User=admin
-Group=admin
+User=USER_REPLACE
+Group=USER_REPLACE
 Type=simple
 WorkingDirectory=/usr/local/bin/mik-dispenser
 Environment="DISPLAY=:0"
