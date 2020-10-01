@@ -7,6 +7,8 @@ if [ "$(id -u)" != 0 ]
   exit
 fi
 
+apt-get install -y lxterminal
+
 # add lxterminal shortcut to openbox
 sed -i '/<\/keyboard>*/i<keybind key="C-A-t"><action name="Execute"><command>lxterminal</command></action></keybind>' /etc/xdg/openbox/rc.xml
 
