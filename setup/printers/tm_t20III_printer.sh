@@ -26,3 +26,5 @@ apt-get install cmake
 tar -xvf "$PRINTER_FILE"
 cd Thermal\ Receipt; ./build.sh; ./install.sh
 /usr/sbin/lpadmin -p EPSON_TM_T20III -E -v 	usb://EPSON/TM-T20III?serial=583741560634690000 -m EPSON/tm-ba-thermal-rastertotmtr-180.ppd
+/usr/sbin/lpadmin -p EPSON_TM_T20III -o TmxPaperReduction=Both
+/usr/sbin/lpadmin -p EPSON_TM_T20III -o TmxPaperCut=CutPerJob
