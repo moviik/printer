@@ -9,7 +9,7 @@ Group=pi
 Type=simple
 WorkingDirectory=/usr/local/bin/mik-printer
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/usr/local/bin/node-v10.11.0-linux-armv7l/bin"
-ExecStart=/usr/local/bin/node-v10.11.0-linux-armv7l/bin/npm start
+ExecStart=/usr/local/bin/node-v10.11.0-linux-armv7l/bin/npm start -- --modus-cups-printer=CUSTOM_SPA_MODUS3
 Restart=always
 RestartSec=5s
 TimeoutStopSec=5s
