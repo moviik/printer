@@ -108,7 +108,13 @@ function configIpcServer () {
     })
     server.on('printer.print', async (payload, socket) => {
       try {
-        ticketBuilder.build(payload)
+        const ticket_html_path = payload.ticket_html_path
+        if (ticket_html_path) {
+          printerController.setFile(ticket_html_path)
+        } else {
+          printerController.setFile('lib/ticket_template/cups.html')
+          ticketBuilder.build(payload)
+        }
         await printerController.print()
         server.broadcast('printer.print_reply', { success: true })
       } catch (error) {
@@ -137,5 +143,4 @@ emitter.on('start', () => {
   } else {
     printerController.openPrinter(getModusCupsPrinterName())
   }
-  printerController.setFile('lib/ticket_template/cups.html')
 })
