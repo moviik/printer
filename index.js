@@ -13,7 +13,13 @@ const TicketBuilderError = require('lib/errors/ticket_builder_error')
 const { argv } = process
 
 function getAdapter () {
-  return getCupsPrinterIndex() !== -1 ? cupsAdapter : modus3Adapter
+  if (getCupsPrinterIndex() !== -1) {
+    return cupsAdapter
+  }
+
+  if (getModusCupsPrinterIndex() !== -1) {
+    return modus3Adapter
+  }
 }
 
 function getCupsPrinterIndex () {
@@ -43,6 +49,9 @@ function getModusCupsPrinterName () {
 }
 
 const chosenAdapter = getAdapter()
+if (!chosenAdapter) {
+  throw new Error('No adapter chosen')
+}
 const PrinterError = chosenAdapter.getPrinterError()
 
 const printerController = new PrinterController(chosenAdapter, 1000, 200)
