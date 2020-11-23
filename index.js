@@ -12,19 +12,32 @@ const TicketBuilder = require('lib/ticket_template/ticket_builder')
 const TicketBuilderError = require('lib/errors/ticket_builder_error')
 const { argv } = process
 
+function getAdapter () {
+  return getCupsPrinterIndex() !== -1 ? cupsAdapter : modus3Adapter
+}
+
 function getCupsPrinterIndex () {
   return argv.findIndex((arg) => {
     return arg.includes('--cups-printer')
   })
 }
 
-function getAdapter () {
-  return getCupsPrinterIndex() !== -1 ? cupsAdapter : modus3Adapter
+function getModusCupsPrinterIndex () {
+  return argv.findIndex((arg) => {
+    return arg.includes('--modus-cups-printer')
+  })
 }
 
 function getCupsPrinterName () {
   return lo_.last(
     lo_.get(argv, getCupsPrinterIndex())
+      .split('=')
+  )
+}
+
+function getModusCupsPrinterName () {
+  return lo_.last(
+    lo_.get(argv, getModusCupsPrinterIndex())
       .split('=')
   )
 }
@@ -112,9 +125,8 @@ emitter.on('stop', () => {
 emitter.on('start', () => {
   if (chosenAdapter === cupsAdapter) {
     printerController.openPrinter(getCupsPrinterName())
-    printerController.setFile('lib/ticket_template/cups.html')
   } else {
-    printerController.openPrinter()
-    printerController.setFile('lib/ticket_template/60mm.xml')
+    printerController.openPrinter(getModusCupsPrinterName())
   }
+  printerController.setFile('lib/ticket_template/cups.html')
 })

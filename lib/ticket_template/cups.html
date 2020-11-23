@@ -5,12 +5,17 @@
   <h1 style="font-size:2.5em; margin: -1px 0 -1px 0">{{{label}}}</h1>
   <p style="font-size:0.75em">{{{dateTime}}}</p>
   <p style="font-size:0.75em;margin-top:-1em">{{{footer}}}</p>
+  <p id="anchor"></p>
 </div>
 
 <script>
-// const fs = require('fs')
-// const image = fs.readFileSync('images/prestop_logo.png').toString('base64')
-// document.getElementById('logo').src = 'images/prestop_logo.png'
 
+window.addEventListener('load', function () {
+  // need this to obtain page size. only used by Modus3 that always prints page size
+  // document.documentElement.offsetHeight won't work with puppeteer (always got 600)
+  const anchor = document.getElementById('anchor')
+  document.anchorOffsetTopBecausePuppeteerSucksCocks = anchor.offsetTop
+  console.log('anchorOffsetTopBecausePuppeteerSucksCocks', document.anchorOffsetTopBecausePuppeteerSucksCocks)
+})
 
 </script>

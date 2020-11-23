@@ -16,6 +16,7 @@ program
   .version('1.0.0')
   .description('Modus3')
   .command('print', 'Print a ticket')
+  .option('--printerName <printerName>', 'CUPS printer name', program.STRING, undefined, true)
   .option('--label <label>', 'Label to print', program.STRING, undefined, true)
   .option('--serviceName [serviceName]', 'Service name', program.STRING, '', false)
   .option('--serviceDescription [serviceDescription]', 'Service description', program.STRING, '', false)
@@ -31,15 +32,15 @@ function printCommand (args, options) {
     throw new Error('error opening printer')
   })
 
-  printerController.on('printer.opened', () => {
+  printerController.on('printer.opened', async () => {
     const ticketBuilder = new TicketBuilder(printerController, ['label'])
-    printerController.setFile('lib/ticket_template/60mm.xml')
+    printerController.setFile('lib/ticket_template/cups.html')
 
     ticketBuilder.build(options)
-    printerController.print()
+    await printerController.print()
     printerController.closePrinter()
   })
-  printerController.openPrinter()
+  printerController.openPrinter(options.printerName)
 }
 
 process.on('unhandledRejection', (reason, p) => {
