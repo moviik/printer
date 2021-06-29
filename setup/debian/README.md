@@ -10,6 +10,7 @@ Note: You can use raspbian setup as well, considering the OSs are very similar. 
     1. Go to user settings and set your user to login automatically
     1. sudo apt-get install cups libcups2-dev libcupsimage2 (needed for npm package @thiagoelg/node-printer)
     1. sudo apt-get install chromium-browser (needed for npm package puppeteer)
+    1. sudo apt-get install dhcpcd5 python
     1. sudo reboot
 1. cd ~
 1. Somehow, clone mik-printer repo (I did it with an imported ssh key to github)
@@ -32,7 +33,7 @@ Note: You can use raspbian setup as well, considering the OSs are very similar. 
 1. Lets take care of systemd application management
     1. cd mik-printer/setup/debian
     1. sed -i 's/USER_REPLACE/<your username>/g' mik-dispenser.service mik-printer.service
-    1. sudo ./systemd.sh (this is silent and might take a while)
+    1. sudo ./systemd.sh (this is silent and might take a while). Please add the required arguments to "mik-printer.service" "ExecStart" so the printer is correctly defined
 1. Allow user to reboot with no password
     1. Place a file "reboot" with content "%sudo ALL=(ALL) NOPASSWD: /sbin/reboot", with mode 0440 in /etc/sudoers.d
 1. Done, reboot

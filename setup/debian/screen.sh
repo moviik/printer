@@ -18,9 +18,9 @@ rm /usr/share/lightdm/lightdm.conf.d/*
 # remove mouse pointer
 cp 50-moviik.conf /usr/share/lightdm/lightdm.conf.d
 
-cp -r ../screens /etc/xdg/openbox
+# cp -r ../screens /etc/xdg/openbox
 
 #if autostart is a folder
 # cp screen-autostart.desktop /etc/xdg/autostart
 #if autostart is a file
-echo "/etc/xdg/openbox/screens/14_inch.sh" | tee -a /etc/xdg/openbox/autostart
+# echo "/etc/xdg/openbox/screens/14_inch.sh" | tee -a /etc/xdg/openbox/autostart

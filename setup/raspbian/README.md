@@ -71,7 +71,7 @@
 1. cd ~
 1. Lets take care of systemd application management
     1. cd mik-printer/setup/raspbian
-    1. sudo ./systemd.sh (this is silent and might take a while)
+    1. sudo ./systemd.sh (this is silent and might take a while). Please add the required arguments to "mik-printer.service" "ExecStart" so the printer is correctly defined
 1. Lets clean things up
     1. cd ~
     1. rm -rf mik-printer
