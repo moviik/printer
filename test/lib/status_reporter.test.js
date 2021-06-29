@@ -1,5 +1,5 @@
 const PrinterAdapter = require('lib/adapter/printer_adapter')
-const PrinterStatusReporter = require('lib/cesmlm/status_reporter')
+const PrinterStatusReporter = require('lib/status_reporter')
 const PrinterError = require('lib/errors/printer_error')
 
 function adapterSetStatus (adapter, newStatus) {

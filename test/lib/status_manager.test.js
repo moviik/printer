@@ -1,4 +1,4 @@
-const PrinterManager = require('lib/cesmlm/status_manager')
+const PrinterManager = require('lib/status_manager')
 const PrinterAdapter = require('lib/adapter/printer_adapter')
 const PrinterError = require('lib/errors/printer_error')
 

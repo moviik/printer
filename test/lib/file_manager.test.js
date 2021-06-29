@@ -1,4 +1,4 @@
-const FileManager = require('lib/cpt/file_manager')
+const FileManager = require('lib/file_manager')
 const PrinterAdapter = require('lib/adapter/printer_adapter')
 
 function adapterSetGetHandle (adapter) {
