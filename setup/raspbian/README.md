@@ -1,4 +1,14 @@
 # RPi 4 lite image build
+Before you start: for every major progress, please backup the image. It might help you later. You will anyway backup a final image, I think. For example, if you backup after GUI stuff, later you don't need to make every step if you're just changing the code. You can use dd: `sudo dd if=/dev/sda of=image_label.img bs=1M status=progress`
+
+
+If you want to shrink the image
+1. sudo fdisk -l raspbian-buster.img
+1. check the output of the latest partition, and copy "End"
+1. sudo truncate --size=$[(< copied end >+1)*512] raspbian-buster.img
+
+## Image build and setup tutorial
+
 1. Get most recent lite raspbian version (tested with 2019-09-26-raspbian-buster-lite.img)
 1. Extend it to free some space to create a new partition
     1. If the image is smaller than 4GB, use the following command
@@ -94,7 +104,3 @@
     1. cd ..
     1. sudo ./install.sh
 1. Done, reboot
-1. If you want to shrink the image
-    1. sudo fdisk -l raspbian-buster.img
-    1. check the output of the latest partition, and copy "End"
-    1. sudo truncate --size=$[(<End>+1)*512] raspbian-buster.img
