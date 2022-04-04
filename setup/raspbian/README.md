@@ -69,23 +69,23 @@ If you want to shrink the image
     1. cd ~/mik-printer/setup/raspbian
     1. sudo ./crontab.sh
     1. ./electron.sh
+    1. Download node here: https://nodejs.org/download/release/v10.11.0/node-v10.11.0-linux-armv7l.tar.gz
+    1. extract to /home/pi 
     1. export PATH=${PATH}:/home/pi/node-v10.11.0-linux-armv7l/bin
     1. sudo ./screen.sh
     1. sudo ./networking.sh
     1. cd ~/mik-printer
     1. PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm i --production
 1. cd ~
-1. Somehow, clone mik-dispenser
-    1. cd mik-dispenser
-    1. npm run electron_install
-1. cd ~
+1. Get Moviik dispenser image (its important to look at what is the build (arm, amd, etc))
+    1. Put on /usr/local/bin
+    1. chmod a+x Name of image
 1. Lets take care of systemd application management
     1. cd mik-printer/setup/raspbian
     1. sudo ./systemd.sh (this is silent and might take a while). Please add the required arguments to "mik-printer.service" "ExecStart" so the printer is correctly defined
 1. Lets clean things up
     1. cd ~
     1. rm -rf mik-printer
-    1. rm -rf mik-dispenser
     1. rm -rf node-v10.11.0-linux-armv7l
 1. Let's create the home partition
     1. see partitions with sudo fdisk -l

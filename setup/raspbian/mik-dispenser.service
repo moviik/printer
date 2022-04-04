@@ -9,10 +9,10 @@ After=network-online.target mik-printer.service
 User=pi
 Group=pi
 Type=simple
-WorkingDirectory=/usr/local/bin/mik-dispenser
+WorkingDirectory=/usr/local/bin
 Environment="DISPLAY=:0"
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/usr/local/bin/node-v10.11.0-linux-armv7l/bin"
-ExecStart=/usr/local/bin/node-v10.11.0-linux-armv7l/bin/npm start
+ExecStart=bash -c ./MoviikDispenser-*
 Restart=always
 RestartSec=5s
 

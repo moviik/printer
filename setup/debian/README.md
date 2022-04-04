@@ -26,9 +26,9 @@ Note: You can use raspbian setup as well, considering the OSs are very similar. 
     1. cd ~/mik-printer
     1. PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm i --production
 1. cd ~
-1. Somehow, clone mik-dispenser
-    1. cd mik-dispenser
-    1. npm run electron_install
+1. Get Moviik dispenser image
+    1. Put on /usr/local/bin
+    1. chmod a+x Name of image
 1. cd ~
 1. Lets take care of systemd application management
     1. cd mik-printer/setup/debian
