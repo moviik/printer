@@ -2,3 +2,4 @@ node_modules
 Moviik.param.xml
 coverage
 lib/ticket_template/cups_temp.pdf
+.DS_Store
