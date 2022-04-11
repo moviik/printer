@@ -24,8 +24,8 @@ tar -xvf "$PRINTER_FILE"
 cd npi-cups-1.1.0; make;
 cd ..
 mkdir -p /usr/share/cups/model/nippon
-cp npi-cups-1.1.0/Npi_2inch_Reciept.ppd /usr/share/cups/model/nippon
+cp npi-cups-1.1.0/Npi_3inch_Reciept.ppd /usr/share/cups/model/nippon
 cp npi-cups-1.1.0/rastertonpi /usr/lib/cups/filter
 
-lpadmin -p NII_2INCH -E -v 	usb://NII/W2K203DPI%20USB -m nippon/Npi_2inch_Reciept.ppd
-lpadmin -p NII_2INCH -o PageSize=X55MMY60MM
+lpadmin -p NII_2INCH -E -v 	usb://NII/W2K203DPI%20USB -m nippon/Npi_3inch_Reciept.ppd
+lpadmin -p NII_2INCH -o PageSize=X72MMY60MM 
