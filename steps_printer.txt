@@ -1,0 +1,41 @@
+ ### Configuring new printers on mik-printer (for mik-dispenser) ### 
+ 
+ Step 1 - Make sure you have the appropriate driver and printer cfg file (.ppd)
+	
+	As example, we're setting up NIPPON NP-2411D.
+
+	1 - Navigate to printers dir: cd /usr/local/bin/mik-printer/setup/printers
+	2 - Locate the appropriate bash script, in this example: np_2411.sh
+	3 - Make sure file is executable by exectuing sudo chmod a+x filename.sh in terminal
+	4 - Run the script with sudo ./np_2411.sh
+ 
+ Step 2 - Add printer to mik-printer module
+ 	1 - Navigate to ~/mik-printer/lib/adapter
+ 	2 - Open cups_adapter.js
+ 	3 - Add if statement for the new printer in function getPdfOptionsByPrinterName()
+ 	4 - Save file.
+ 
+ Step 3 - Modify mik-printer.service to accomodate for the new printer model.
+ 
+ 	1 - sudo vim /etc/systemd/system/mik-printer.service
+ 	2 - Modify line 12 - "ExecStart..." (in vim you should hit the INSERT key, and after you should be able to modify the files) - If using a CUPS printer, use the flags "-- --cups-printer=PRINTERNAME" - in this example, for the NP-2411D, PRINTERNAME should be "NII_2INCH" "-- --cups-printer=NII_2INCH".
+ 	3 - Save the file in vim (ESC to return to vim cmd mode and type ":x" to save the modifications to the file.
+ 	
+ Step 4 - Reload daemon and mik-printer.service 
+ 	
+ 	1 - sudo systemctl daemon-reload 
+ 	2 - sudo systemctl restart mik-printer.service - this will "kill" the dispenser app and make it restart with the new changes.
+ 	
+ Step 5 - Test printing with mik-dispenser app.
+ 
+ 	1 - Connect to dispenser in a moviik sandbox/test tenant (dev/QA/etc.)
+ 	2 - Hit one of the service buttons to print a ticket. 
+ 	3 - profit. 
+
+ Troubleshooting:
+ 
+  IF for any reason, the dispenser app keeps restarting, there might be a code error in one of the files you edited before. 
+
+  check the printer service logs for hints on what might be wrong. 
+  
+  example input: sudo journalctl -u mik-printer.service | tail -n 100 - to log the last 100 lines for mik-printer.service in the terminal.
