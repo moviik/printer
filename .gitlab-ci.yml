@@ -1,11 +1,16 @@
 default:
-  image: node:10.11.0
+  image: moviik/node:17.3.1-bullseye@sha256:ac2233d248f29c682608b8936fabb9d5bf79d29512423b7fa5e0abdb2b9faa27
   cache:
+    key:
+      files:
+        - package-lock.json
     paths:
-      - node_modules
+      - node_modules/
+      - .npm/
 
 stages:
   - build
+  - lint
   - test
 
 install_dependencies:
@@ -13,14 +18,20 @@ install_dependencies:
   script:
     - apt-get update
     - apt-get install -y libcups2-dev
-    - PUPPETEER_SKIP_DOWNLOAD=true npm install
+    - PUPPETEER_SKIP_DOWNLOAD=true npm install --cache .npm --prefer-offline
+  only:
+    - merge_requests
+
+lint:
+  stage: lint
+  script:
+    - npm run lint
   only:
     - merge_requests
 
 tests:
   stage: test
   script:
-    - npm run lint
     - npm test
   only:
     - merge_requests
