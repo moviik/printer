@@ -20,7 +20,7 @@ install_dependencies:
 tests:
   stage: test
   script:
-    - npm run lint
+  #- npm run lint
     - npm test
   only:
     - merge_requests
