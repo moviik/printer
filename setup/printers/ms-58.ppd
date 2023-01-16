@@ -1,0 +1,117 @@
+*PPD-Adobe:             "4.3"
+*FormatVersion:         "4.3"
+*FileVersion:           "1.1"
+*LanguageVersion:       English
+*LanguageEncoding:      ISOLatin1
+*PCFileName:            "ms-58.ppd"
+*Manufacturer:          "Masung"
+*Product:               "(ms-58)"
+*1284DeviceID:          "MFG:Masung;CMD:Masung;MDL:ms-58;CLS:PRINTER;"
+*cupsVersion:           1.1
+*cupsManualCopies:      True
+*cupsModelNumber:       58
+*cupsFilter:            "application/vnd.cups-raster 0 rastertomasung"
+*ModelName:             "ms-58"
+*ShortNickName:         "ms-58"
+*NickName:              "Masung ms-58"
+*PSVersion:             "(3010.000) 550"
+*LanguageLevel:         "3"
+*ColorDevice:           False
+*DefaultColorSpace:     Gray
+*FileSystem:            False
+*Throughput:            "1"
+*LandscapeOrientation:  Plus90
+*VariablePaperSize:     True
+*TTRasterizer:          Type42
+
+*OpenUI *PageSize/Media Size: PickOne
+*OrderDependency: 10 AnySetup *PageSize
+*DefaultPageSize: X48MMY210MM
+
+*PageSize X48MMY100MM/58mm x 100mm:         "<</PageSize[136 235]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageSize X48MMY210MM/58mm x 210mm:         "<</PageSize[136 595]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageSize X48MMY297MM/58mm x 297mm:         "<</PageSize[136 842]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageSize X48MMY3276MM/58mm x 3276mm:       "<</PageSize[136 9286]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion: PickOne
+*OrderDependency: 10 AnySetup *PageRegion
+*DefaultPageRegion: X48mmY210mm
+
+*PageRegion X48MMY100MM/58mm x 100mm:         "<</PageSize[164 235]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageRegion X48MMY210MM/58mm x 210mm:         "<</PageSize[164 595]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageRegion X48MMY297MM/58mm x 297mm:         "<</PageSize[164 842]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageRegion X48MMY3276MM/58mm x 3276mm:       "<</PageSize[164 9286]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+
+*DefaultImageableArea: X48MMY210MM
+
+*ImageableArea X48MMY100MM:              "0 0 136 235"
+*ImageableArea X48MMY210MM:              "0 0 136 595"
+*ImageableArea X48MMY297MM:              "0 0 136 842"
+*ImageableArea X48MMY3276MM:             "0 0 136 9286"
+
+*DefaultPaperDimension: X48MMY210MM
+
+*PaperDimension X48MMY100MM:             "136 235"
+*PaperDimension X48MMY210MM:             "136 595"
+*PaperDimension X48MMY297MM:             "136 842"
+*PaperDimension X48MMY3276MM:            "136 9286"
+
+*MaxMediaWidth:  "136"
+*MaxMediaHeight: "9286"
+*HWMargins:      0 0 0 0
+*CustomPageSize True: "pop pop pop <</PageSize[5 -2 roll]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*ParamCustomPageSize Width:        1 points 48 136
+*ParamCustomPageSize Height:       2 points 48 9282
+*ParamCustomPageSize WidthOffset:  3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation:  5 int 0 0
+
+*OpenGroup: CutGroup/Cut Options
+*OpenUI *BlackMark/Black Mark Sensor: PickOne
+*DefaultBlackMark: 0Off
+*BlackMark 0Off/Off: ""
+*BlackMark 1On/On: ""
+*CloseUI:*BlackMark
+
+*OpenUI *PageCutMode/Page Cut Mode: PickOne
+*DefaultPageCutMode: 2FullCut
+*PageCutMode 0NotCut/Not Cut: ""
+*PageCutMode 1PartCut/Part Cut: ""
+*PageCutMode 2FullCut/Full Cut: ""
+*CloseUI:*PageCutMode
+
+*OpenUI *FeedDist/Feed At Page Ending: PickOne
+*DefaultFeedDist: 2feed9mm
+*FeedDist 0feed3mm/3mm: ""
+*FeedDist 1feed6mm/6mm: ""
+*FeedDist 2feed9mm/9mm: ""
+*FeedDist 3feed12mm/12mm: ""
+*FeedDist 4feed15mm/15mm: ""
+*FeedDist 5feed18mm/18mm: ""
+*FeedDist 6feed21mm/21mm: ""
+*FeedDist 7feed24mm/24mm: ""
+*FeedDist 8feed27mm/27mm: ""
+*FeedDist 9feed30mm/30mm: ""
+*FeedDist 10feed33mm/33mm: ""
+*FeedDist 11feed36mm/36mm: ""
+*FeedDist 12feed39mm/39mm: ""
+*FeedDist 13feed42mm/42mm: ""
+*FeedDist 14feed45mm/45mm: ""
+*CloseUI: *FeedDist
+
+*OpenUI *BlankSpace/Print End Doc Blank: PickOne
+*DefaultBlankSpace: 1On
+*BlankSpace 0Off/Off: ""
+*BlankSpace 1On/On: ""
+*CloseUI: *BlankSpace
+
+*OpenUI *RotationMode/Rotation 180 Print: PickOne
+*DefaultRotationMode: 0Off
+*RotationMode 0Off/Off: ""
+*RotationMode 1On/On: ""
+*CloseUI: *RotationMode
+ 
+
+*% End
