@@ -1,13 +1,13 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 if [ "$(id -u)" != 0 ]
   then echo "Please run as root"
   exit
 fi
 
-MODUS_FILE=../Modus3_CUPSDrv-200-PKG.tgz
+MODUS_FILE=./Modus3_CUPSDrv-200-PKG.tgz
 if [ ! -f "$MODUS_FILE" ]
   then echo "$MODUS_FILE must exist"
   exit

@@ -1,13 +1,13 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 if [ "$(id -u)" != 0 ]
   then echo "Please run as root"
   exit
 fi
 
-PRINTER_FILE=../CUPS_Linux_Driver.zip
+PRINTER_FILE=./CUPS_Linux_Driver.zip
 if [ ! -f "$PRINTER_FILE" ]
   then echo "$PRINTER_FILE must exist"
   exit
@@ -22,7 +22,7 @@ usermod -a -G lp $DEFAULT_USER
 usermod -a -G lpadmin $DEFAULT_USER
 
 # configure cups printer driver
-unzip ../CUPS_Linux_Driver.zip -d CUPS_Linux_Driver
+unzip ./CUPS_Linux_Driver.zip -d CUPS_Linux_Driver
 sudo dpkg -i CUPS_Linux_Driver/ctzpos-cups_1.2.4-0_armhf.deb
 cd /usr/share/cups/model
 mkdir citizen

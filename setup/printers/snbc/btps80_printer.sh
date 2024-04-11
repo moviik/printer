@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 if [ "$(id -u)" != 0 ]
   then echo "Please run as root"
