@@ -5,8 +5,6 @@ global.lo_ = require('lodash')
 const ipc = require('node-ipc')
 const EventEmitter = require('events')
 
-const modus3Adapter = require('lib/adapter/modus3_adapter')
-const cupsAdapter = require('lib/adapter/cups_adapter')
 const PrinterController = require('lib/printer_controller')
 const TicketBuilder = require('lib/ticket_template/ticket_builder')
 const TicketBuilderError = require('lib/errors/ticket_builder_error')
@@ -14,10 +12,12 @@ const { argv } = process
 
 function getAdapter () {
   if (getCupsPrinterIndex() !== -1) {
+    const cupsAdapter = require('lib/adapter/cups_adapter')
     return cupsAdapter
   }
 
   if (getModusCupsPrinterIndex() !== -1) {
+    const modus3Adapter = require('lib/adapter/modus3_adapter')
     return modus3Adapter
   }
 }
