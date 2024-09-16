@@ -35,17 +35,13 @@ function getModusCupsPrinterIndex () {
 }
 
 function getCupsPrinterName () {
-  return lo_.last(
-    lo_.get(argv, getCupsPrinterIndex())
-      .split('=')
-  )
+  const [, printer] = lo_.get(argv, getCupsPrinterIndex()).split('=')
+  return printer || undefined
 }
 
 function getModusCupsPrinterName () {
-  return lo_.last(
-    lo_.get(argv, getModusCupsPrinterIndex())
-      .split('=')
-  )
+  const [, printer] = lo_.get(argv, getModusCupsPrinterIndex()).split('=')
+  return printer || undefined
 }
 
 const chosenAdapter = getAdapter()
@@ -138,7 +134,7 @@ emitter.on('stop', () => {
 })
 
 emitter.on('start', () => {
-  if (chosenAdapter === cupsAdapter) {
+  if (chosenAdapter.getName() === 'cups') {
     printerController.openPrinter(getCupsPrinterName())
   } else {
     printerController.openPrinter(getModusCupsPrinterName())
